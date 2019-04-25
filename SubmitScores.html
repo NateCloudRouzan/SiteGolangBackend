@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Nate Cloud-Rouzan's Web Page</title>
+
+    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.btn {
+  background-color: #262626;
+  display: block
+  width: 100%;
+  border: none;
+  color: white;
+  padding: 4px 2px;
+  text-align: center;
+  font-size: 48px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.5s;
+}
+
+.btn:hover {opacity: 1;
+    font-size: 64px;
+}
+
+a {
+text-decoration: none;
+}   
+body {
+    background-color: #262626;
+}
+
+h1 {
+    padding: 16px 32px;
+    color: white;
+    text-align: center;
+}
+
+p {
+    font-family: verdana;
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+    
+ <h1>Nate Cloud-Rouzan</h1> <hr>
+
+<!-- Include the validator script-->
+<script src="gen_validatorv4.js"
+  type="text/javascript"></script>
+
+<form name="myform" action="submit-form.php">
+Search: <input type='text' name='query'>
+<A href="javascript: submitform()">Submit</A>
+</form>
+
+<script type="text/javascript">
+var myformValidator = new Validator("myform");
+myformValidator.addValidation("query","req",
+  "Please enter the value for query");
+</script>
+
+<script type="text/javascript">
+function submitform()
+{
+  if(document.myform.onsubmit())
+  {
+    document.myform.submit();
+  }
+}
+</script>
+    
+
+</body>
+</html>

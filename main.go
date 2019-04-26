@@ -7,3 +7,7 @@ import (
 func init() {
 	http.Handle("/", http.FileServer(http.Dir(".")))
 }
+
+func main(){
+	
+}

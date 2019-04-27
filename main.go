@@ -8,10 +8,10 @@ import (
 func init() {
 	http.Handle("/", http.FileServer(http.Dir(".")))
     
-    tpl = template.Must(template.ParseFiles("templatePractice.gohtml"))
+//    tpl = template.Must(template.ParseFiles("templatePractice.gohtml"))
     
-    err := tpl.Execute(os.Stdout, "From GolangFile")
-    if err != nil{
-        log.Fatlln(err)
-    }
+//    err := tpl.Execute(os.Stdout, "From GolangFile")
+//    if err != nil{
+//        log.Fatlln(err)
+//    }
 }

@@ -1,166 +1,244 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Nate Cloud-Rouzan's Web Page Hello</title>
-
-    
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {box-sizing: border-box}
-body {
-  background-color: #262626;
-  font-family: Verdana, sans-serif; margin:0}
-
-.btn {
-  background-color: #262626;
-  border: none;
-  color: white;
-  padding: 0px 0px;
-  text-align: center;
-  font-size:3vw;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.5s;
-}
-
-.btn:hover {opacity: 1;
-      font-size:4vw;
-}
-    
- .bttn {
-  background-color: #262626;
-  border: none;
-  color: white;
-  padding: 0px 0px;
-  text-align: center;
-  font-size: 16px;
-  margin: 4px 2px;
-  opacity: 0.6;
-  transition: 0.5s;
-}
-
-.bttn:hover {opacity: 1;
-  font-size:2vw;
-}
-
-a {
-text-decoration: none;
-}   
-
-
-h1 {
-    color: white;
-    text-align: center;
-}
-
-h2{
-     color: white;
-    font-size: 24px;
-    text-align: center;
-}
-
-p {
-    font-family: verdana;
-    font-size: 20px;
-    text-align: top, left;
-}
-</style>
+    <meta charset="utf-8">
+    <title>Nates WebPages Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Learn to program.">
+    <link href="https://fonts.googleapis.com/css?family=Cantarell:400,700|Kotta+One" rel="stylesheet">
+    <link rel="stylesheet" href="css/mcleod-reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mq_800-plus.css" media="(min-width: 800px)">
 </head>
-    
 <body>
-    <h1 style="font-size:5vw">Nate Cloud-Rouzan</h1>   
-    <hr>
+
+<!-- BEGIN SVG DEFINITIONS -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="universal-access" viewBox="0 0 100 100">
+        <path d="M50,89.9c-21.6,0-39.1-17.5-39.1-39.1S28.4,11.8,50,11.8c21.6,0,39.1,17.5,39.1,39.1S71.6,89.9,50,89.9z M16.5,50.9
+		c0,18.4,15,33.5,33.5,33.5s33.5-15,33.5-33.5S68.4,17.4,50,17.4S16.5,32.4,16.5,50.9z M50,81.6c-17,0-30.7-13.7-30.7-30.7
+		S33,20.2,50,20.2c17,0,30.7,13.7,30.7,30.7S67,81.6,50,81.6z M67.5,38.4c-6.2,1.5-11.9,2.7-17.5,2.7s-11.2-1.2-17.5-2.7
+		c-1.5-0.3-3,0.6-3.4,2c-0.3,1.5,0.6,3,2,3.4c4.6,1.1,8.9,2,13.2,2.5c-0.2,14.7-1.8,18.8-3.6,23.5l-0.4,0.9
+		c-0.6,1.4,0.2,3.1,1.6,3.6c0.3,0.1,0.7,0.2,1,0.2c1.1,0,2.2-0.7,2.6-1.8l0.3-0.9c1.2-3.1,2.4-6.1,3.1-11.3h1.8
+		c0.7,5.2,1.9,8.2,3.1,11.3l0.3,0.9c0.4,1.1,1.5,1.8,2.6,1.8c0.3,0,0.7,0,1-0.2c1.4-0.6,2.2-2.2,1.6-3.6l-0.4-0.9
+		c-1.8-4.7-3.4-8.8-3.6-23.5c4.3-0.5,8.6-1.4,13.2-2.5c1.5-0.3,2.4-1.8,2-3.4C70.5,39,69,38.1,67.5,38.4z M50,28.5
+		c-3.1,0-5.6,2.5-5.6,5.6s2.5,5.6,5.6,5.6c3.1,0,5.6-2.5,5.6-5.6S53.1,28.5,50,28.5z"/>
+    </symbol>
+    <symbol id="home" viewBox="0 0 100 100">
+        <path d="M82.1,55.3c-0.2,0.3-0.6,0.4-0.9,0.5c0,0-0.1,0-0.1,0c-0.3,0-0.7-0.1-0.9-0.3L50,30.3L19.8,55.4c-0.3,0.2-0.7,0.3-1,0.3
+		c-0.3,0-0.7-0.2-0.9-0.5L15.2,52c-0.5-0.6-0.4-1.5,0.2-2L46.7,24c1.8-1.5,4.8-1.5,6.6,0L64,32.9v-8.5c0-0.8,0.6-1.4,1.4-1.4h8.4
+		c0.8,0,1.4,0.6,1.4,1.4v17.8l9.5,7.9c0.6,0.5,0.7,1.4,0.2,2L82.1,55.3z M75.1,76c0,1.5-1.3,2.8-2.8,2.8H55.6V62H44.4v16.7H27.7
+		c-1.5,0-2.8-1.3-2.8-2.8V55.1c0-0.1,0-0.2,0-0.3L50,34.1l25.1,20.7c0,0.1,0,0.2,0,0.3V76z"/>
+    </symbol>
+    <symbol id="briefcase" viewBox="0 0 100 100">
+        <path d="M89.1,46.7H10.9V29.9c0-3.8,3.1-7,7-7h15.3v-7c0-2.3,1.9-4.2,4.2-4.2h25.1c2.3,0,4.2,1.9,4.2,4.2v7h15.3c3.8,0,7,3.1,7,7
+		V46.7z M89.1,71.8c0,3.8-3.1,7-7,7H17.9c-3.8,0-7-3.1-7-7V50.9h29.3v7c0,1.5,1.3,2.8,2.8,2.8h14c1.5,0,2.8-1.3,2.8-2.8v-7h29.3
+		V71.8z M61.2,23v-5.6H38.8V23H61.2z M55.6,56.4H44.4v-5.6h11.2V56.4z"/>
+    </symbol>
+    <symbol id="pencil" viewBox="0 0 100 100">
+        <path d="M71,48.1L34.6,84.5H16.4V66.3l36.4-36.4L71,48.1z M36.3,74.9L26,64.6l-4,4v4.7h5.6v5.6h4.7L36.3,74.9z M54.2,37.3
+		c-0.3,0-0.5,0.1-0.7,0.3L29.7,61.3c-0.2,0.2-0.3,0.5-0.3,0.7c0,0.6,0.4,1,1,1c0.3,0,0.5-0.1,0.7-0.3L54.8,39
+		c0.2-0.2,0.3-0.5,0.3-0.7C55.2,37.7,54.8,37.3,54.2,37.3z M81,38l-7.3,7.3L55.6,27.1l7.3-7.2c1-1,2.4-1.7,3.9-1.7
+		c1.5,0,2.9,0.6,4,1.7L81,30.1c1,1,1.6,2.5,1.6,4C82.7,35.6,82.1,37,81,38z"/>
+    </symbol>
+    <symbol id="gear" viewBox="0 0 100 100">
+        <path d="M83.6,55.8c0,0.7-0.5,1.4-1.2,1.6l-8.1,1.2c-0.5,1.4-1,2.7-1.7,4c1.5,2.1,3.1,4.1,4.7,6c0.3,0.3,0.4,0.7,0.4,1.1
+		c0,0.4-0.1,0.7-0.4,1c-1,1.4-7,7.8-8.4,7.8c-0.4,0-0.8-0.2-1.1-0.4l-6-4.7c-1.3,0.7-2.6,1.2-4,1.7c-0.3,2.7-0.6,5.5-1.3,8.1
+		c-0.2,0.7-0.8,1.2-1.6,1.2h-9.7c-0.8,0-1.5-0.6-1.6-1.3l-1.2-8c-1.4-0.4-2.7-1-3.9-1.6l-6.2,4.7c-0.3,0.3-0.7,0.4-1.1,0.4
+		s-0.8-0.2-1.1-0.5c-2.3-2.1-5.4-4.8-7.2-7.3c-0.2-0.3-0.3-0.7-0.3-1c0-0.4,0.1-0.7,0.3-1c1.5-2,3.1-3.9,4.6-6
+		c-0.7-1.4-1.4-2.8-1.8-4.3l-8-1.2c-0.7-0.1-1.3-0.8-1.3-1.6v-9.7c0-0.7,0.5-1.4,1.2-1.6l8.1-1.2c0.4-1.4,1-2.7,1.7-4
+		c-1.5-2.1-3.1-4.1-4.7-6c-0.3-0.3-0.4-0.7-0.4-1c0-0.4,0.2-0.7,0.4-1c1-1.4,7-7.8,8.4-7.8c0.4,0,0.8,0.2,1.1,0.4l6,4.7
+		c1.3-0.7,2.6-1.2,4-1.7c0.3-2.7,0.6-5.5,1.3-8.1c0.2-0.7,0.8-1.2,1.6-1.2h9.7c0.8,0,1.5,0.6,1.6,1.3l1.2,8c1.4,0.4,2.7,1,3.9,1.6
+		l6.2-4.7c0.3-0.3,0.7-0.4,1-0.4s0.8,0.2,1.1,0.4c2.3,2.1,5.4,4.9,7.2,7.4c0.2,0.3,0.3,0.6,0.3,1c0,0.4-0.1,0.7-0.3,1
+		c-1.5,2-3.1,3.9-4.6,6c0.7,1.4,1.4,2.8,1.8,4.3l8,1.2c0.7,0.1,1.3,0.8,1.3,1.6V55.8z M50,39.7c-6.2,0-11.2,5-11.2,11.2
+		c0,6.2,5,11.2,11.2,11.2c6.2,0,11.2-5,11.2-11.2C61.2,44.7,56.2,39.7,50,39.7z"/>
+    </symbol>
+    
+    <symbol id="ghub" >
+        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+    </symbol>
+    <symbol id="linkedIn" >
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </symbol>
+    <symbol id="tweetButton">
+        <path d="M153.6,301.6c94.3,0,145.9-78.2,145.9-145.9c0-2.2,0-4.4-0.1-6.6c10-7.2,18.7-16.3,25.6-26.6
+			c-9.2,4.1-19.1,6.8-29.5,8.1c10.6-6.3,18.7-16.4,22.6-28.4c-9.9,5.9-20.9,10.1-32.6,12.4c-9.4-10-22.7-16.2-37.4-16.2
+			c-28.3,0-51.3,23-51.3,51.3c0,4,0.5,7.9,1.3,11.7c-42.6-2.1-80.4-22.6-105.7-53.6c-4.4,7.6-6.9,16.4-6.9,25.8
+			c0,17.8,9.1,33.5,22.8,42.7c-8.4-0.3-16.3-2.6-23.2-6.4c0,0.2,0,0.4,0,0.7c0,24.8,17.7,45.6,41.1,50.3c-4.3,1.2-8.8,1.8-13.5,1.8
+			c-3.3,0-6.5-0.3-9.6-0.9c6.5,20.4,25.5,35.2,47.9,35.6c-17.6,13.8-39.7,22-63.7,22c-4.1,0-8.2-0.2-12.2-0.7
+			C97.7,293.1,124.7,301.6,153.6,301.6"/>
+    </symbol>
+    <symbol id="uberLogo">
+        <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+        <title>uber_rides_api_icon</title>
+        <desc>Created with Sketch.</desc>
+        <defs></defs>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uber_rides_api_icon">
+            <rect id="Rectangle-path" fill="#000000" x="0.5" y="0.5" width="33" height="33" rx="2.5"></rect>
+            <path d="M31,1 C32.1045695,1 33,1.8954305 33,3 L33,31 C33,32.1045695 32.1045695,33 31,33 L3,33 C1.8954305,33 1,32.1045695 1,31 L1,3 C1,1.8954305 1.8954305,1 3,1 L31,1 L31,1 Z M31,0 L3,0 C1.34314575,-4.4408921e-16 0,1.34314575 -2.22044605e-16,3 L-2.22044605e-16,31 C0,32.6568542 1.34314575,34 3,34 L31,34 C32.6568542,34 34,32.6568542 34,31 L34,3 C34,1.34314575 32.6568542,0 31,-2.22044605e-16 L31,-2.22044605e-16 L31,0 Z" id="Shape" fill="#FFFFFF"></path>
+            <path d="M17,7 C11.8643467,6.99993548 7.56356533,10.8900895 7.05,16 L14,16 L14,14.5 C14,14.2238576 14.2238576,14 14.5,14 L19.5,14 C19.7761424,14 20,14.2238576 20,14.5 L20,19.5 C20,19.7761424 19.7761424,20 19.5,20 L14.5,20 C14.2238576,20 14,19.7761424 14,19.5 L14,18 L7.05,18 C7.58928848,23.3658527 12.2862527,27.3375518 17.6671192,26.9777144 C23.0479857,26.6178769 27.1742887,22.0561349 26.9943035,16.6662543 C26.8143183,11.2763738 22.3928848,7.00006775 17,7 L17,7 Z" id="Shape" fill="#FFFFFF"></path>
+        </g>
+    </g>
+    
+    </symbol>
+    
+    
+</svg>
+<!-- END SVG DEFINITIONS -->
+
+<header>
+    <div>
+        <a href="#">
+            <svg class="idx-hdr-svg"><use xlink:href="FormPage.html"></use></svg>
+            <h1>Login</h1>
+        </a>
+    </div>
+    <nav>
+    <a href="#" class="btn"><svg class="idx-hdr-svg"><use xlink:href="#home"></use></svg></a>
+             
+    <a href="https://www.linkedin.com/in/cloudrouzan" class="btn"><svg class="idx-hdr-svg" role="img" viewBox="0 0 24 24" ><use xlink:href="#linkedIn"></use></svg>    
+    
+    <a href="https://github.com/NateCloudRouzan" class="btn"><svg class="idx-hdr-svg" role="img" viewBox="0 0 24 24" ><use xlink:href="#ghub"></use></svg>
+        
+<!--	<a href="StudentSeal.html" class="btn"><svg class="idx-hdr-svg"><use xlink:href="#briefcase"></use></svg> -->
+	<a href="projects.html" class="btn"><svg class="idx-hdr-svg"><use xlink:href="#pencil"></use></svg></a>
+    <a href="https://twitter.com/N8Rouzan?ref_src=twsrc%5Etfw" class="btn">
+        <svg x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
+        <style type="text/css">.st0{opacity:0.01;fill:#292F33;} .st1{fill:#FFFFFF;}</style>
+        <use xlink:href="#tweetButton"></use></svg>
+    </a>
+	<a href="https://eng.uber.com/uncovering-genius/" class="btn"><svg class="idx-hdr-svg"><use xlink:href="#gear"></use></svg></a>
+
+    </nav>
+</header>
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 7</div>
+  <img src="https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" style="width:80%; padding-left: 15%">
+  <div class="text">Caption Two</div>
+</div>
+    
+    
+<section id="idx-atf" >
  
-<table style="width:100%"; align="left">
-   <tr>
-    <td><a href="index.html" class="btn">Home</a></td>
-    <td><a href="https://www.linkedin.com/in/cloudrouzan" class="btn">LinkedIn</a></td>
-    <td><a href="https://github.com/NateCloudRouzan" class="btn">GitHub</a></td>
-    <td><a href="StudentSeal.html" class="btn">Student Seal</a></td>
-    <td><a href="projects.html" class="btn" style="color:#b30000">Projects</a></td>
-    <td><a href="https://eng.uber.com/uncovering-genius/" class="btn">Articles</a></td>
-  </tr>
-</table>
-    <hr>
-<br>
+    <div class="idx-center-spacebetween">
+        <div class="idx-center-center">
 
-
-    
-<h2 style="alighn:center">Like what you see? lets connect or collaborate! </h2>
-<table style="width:20%" align="center">
-  <tr>
-    <td style="padding-left: 10%">
-      <a href="https://twitter.com/N8Rouzan?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" data-size=large>Follow @N8Rouzan</a>
-    </td>
-    <td style="padding-left: 5%">
-       <a href="https://twitter.com/messages/compose?recipient_id=3053768618&text=Hello%20Nate,%20I%20saw%20your%20profile%20and%20am%20interested%20in%20collaborating!"
-      class="twitter-dm-button" data-screen-name="@N8Rouzan" data-size=large>Message</a>
-    </td>
-  </tr>
-</table>
-    <br>
-
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    
-<table style="width:90%; padding-left: 5%;";>
-  <tr style="background-color:EDEDED">
-    <td style="width:30%; padding-left: 1% ; padding-top: 1% ; padding-bottom: 1%"> 
         <iframe  height= 100% src="https://www.youtube.com/embed/wV1VlNoZbt0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </td>
-      <td>
           <b>Language:</b> Verilog<br><br>
           <b>IDE:</b> Altera/ Quartus<br><br>
           <b>Description:</b> This is a video of a responsive streetlight created using a DE1-SoC board as well as a solderable breadboard and various colored LEDs.
-          </td>
-    </tr> 
-    <tr style="background-color:CCD6DD">
-        <td style="width:30%; padding-left: 1% ; padding-top: 1% ; padding-bottom: 1%">
+
            <iframe height = 100% src="https://www.youtube.com/embed/cUVPq1st284" frameborder="2" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </td>
-        <td>
           <b>Language:</b> C/C++/.ino<br><br>
           <b>IDE:</b> Arduino<br><br>
           <b>Description:</b> This is a video displaying a class project using  an arduino Mega as well as a TFT display. This device was meant to be a mock medical device using Structs/ HW/SW interupts as well as a touch Screen</td>
-    </tr>
-    <tr style="background-color:EDEDED">
-       <td style="width:30%; padding-left: 1% ; padding-top: 1% ; padding-bottom: 1%">
+        
      <iframe src="https://www.youtube.com/embed/Q781F02c0Ss" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </td>
-        <td><b>Language:</b> C/C++/.ino/Java<br><br>
+        <b>Language:</b> C/C++/.ino/Java<br><br>
           <b>IDE:</b> Arduino /Processing<br><br>
-          <b>Description:</b> This is a video displaying a class project that expands upon the code created in the video above. Using the processing IDE and a PuTTy serial connection I was able to make a mock GUI that was able to read and write data from the Mega as well as start and stop the display</td>
-    </tr>
-    <tr style="background-color:CCD6DD">
-        <td style="width:30%; padding-left: 1% ; padding-top: 1% ; padding-bottom: 1%">
-        <iframe src="https://www.youtube.com/embed/tfnxq2OMxAM" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </td>
-        <td><b>Language:</b> C/C++/.ino/<br><br>
-          <b>IDE:</b> Arduino<br><br>
-          <b>Description:</b> This is a timelapse displaying a group project where we used a mix of 3D printing as well as Stepper and Servo motors and an arduino to create a handwriting machine that takes in Bluetooth strings and is able to draw charachters of different sizes</td>
-    </tr>
-    <tr style="background-color:EDEDED">
-        <td style="width:30%; padding-left: 1% ; padding-top: 1% ; padding-bottom: 1%">
-        <img align=left src="img/GameScreenShot.jpg" width="45%" height=auto>
-        </td>
+          <b>Description:</b> This is a video displaying a class project that expands upon the code created in the video above. Using the processing IDE and a PuTTy serial connection I was able to make a mock GUI that was able to read and write data from the Mega as well as start and stop the display
 
-        <td>
+        <iframe src="https://www.youtube.com/embed/tfnxq2OMxAM" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+        <b>Language:</b> C/C++/.ino/<br><br>
+          <b>IDE:</b> Arduino<br><br>
+          <b>Description:</b> This is a timelapse displaying a group project where we used a mix of 3D printing as well as Stepper and Servo motors and an arduino to create a handwriting machine that takes in Bluetooth strings and is able to draw charachters of different sizes
+        <img align=left src="img/GameScreenShot.jpg" width="45%" height=auto>
+
         <b>Language:</b> Java<br><br>
           <b>IDE:</b> Processing<br><br>
           <b>Description:</b> This is a timelapse displaying a group project where we used a mix of 3D printing as well as Stepper and Servo motors and an arduino to create a handwriting machine that takes in Bluetooth strings and is able to draw charachters of different sizes    
-        for this project i used the processing IDE to create a fun game that also stores high Scores. I then used Processing js to allow for this game to be played via a web browser<a href="game.html">Click Here!</a> to see if you can Try and get the high score!</td>
-    </tr>
-</table>
-<br>
-<h2 style="alighn:center">Like what you see? lets connect or collaborate! </h2>
-<table style="width:20%" align="center">
-  <tr>
-    <td style="padding-left: 10%">
-      <a href="https://twitter.com/N8Rouzan?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" data-size=large>Follow @N8Rouzan</a>
-    </td>
-    <td style="padding-left: 5%">
-       <a href="https://twitter.com/messages/compose?recipient_id=3053768618&text=Hello%20Nate,%20I%20saw%20your%20profile%20and%20am%20interested%20in%20collaborating!"
-      class="twitter-dm-button" data-screen-name="@N8Rouzan" data-size=large>Message</a>
-    </td>
-  </tr>
-</table>
+        for this project i used the processing IDE to create a fun game that also stores high Scores. I then used Processing js to allow for this game to be played via a web browser<a href="game.html">Click Here!</a> to see if you can Try and get the high score!
+        <br>
+            
+            
+            
+            <h2>Rouzan</h2>
+            <h3>HEADING&nbsp;three&nbsp; figuring out &nbsp;hehe&nbsp;HAHA</h3>
+        </div>
+
+        <h2>HTML Forms</h2>
+
+<form action="/action_page.php">
+        First name:<br>
+        <input type="text" name="firstname" value="Mickey">
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname" value="Mouse">
+        <br><br>
+        <button input type="submit" value="Submit">Submit</button>
+</form> 
+
+        
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+<hr>
+
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+
+    </div>
+</section>
+
+
+
+<footer>
+    <nav>
+    <a href="http://www.cloudrouzan.com/">
+            <svg><use xlink:href="#home"></use></svg>
+            Home
+        </a>
+
+        
+    <a href="https://www.linkedin.com/in/cloudrouzan" class="btn"><svg class="idx-hdr-svg" role="img" viewBox="0 0 24 24" ><use xlink:href="#linkedIn"></use></svg>LinkedIn account</a>
+    
+    <a href="https://github.com/NateCloudRouzan" class="btn"><svg class="idx-hdr-svg" role="img" viewBox="0 0 24 24" ><use xlink:href="#ghub"></use></svg>Github Account</a>
+	<a href="StudentSeal.html" class="btn"><svg class="idx-hdr-svg"><use xlink:href="#briefcase"></use></svg>StudentSeal<br>
+	<a href="projects.html" class="btn"><svg class="idx-hdr-svg"><use xlink:href="#pencil"></use></svg>Hardware Projects</a>
+	<a href="https://eng.uber.com/uncovering-genius/" class="btn"><svg class="idx-hdr-svg"><use xlink:href="#gear"></use></svg>Articles</a>
+    <a href="https://twitter.com/N8Rouzan?ref_src=twsrc%5Etfw" class="btn">
+        <svg x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
+        <style type="text/css">.st0{opacity:0.01;fill:#292F33;} .st1{fill:#FFFFFF;}</style>
+        <use xlink:href="#tweetButton"></use></svg>Follow @N8Rouzan
+    </a>
+    
+</nav>
+
+
+</footer>
+
+    
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+    
 </body>
 </html>

@@ -10,20 +10,23 @@ import (
 
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
+    if r.URL.Path != "/" {
+        errorHandler(w, r, http.StatusNotFound)
+        return
+    }
     
+    fs := http.FileServer(http.Dir("index"))
+    http.Handle("/", fs)
 //    http.FileServer(http.Dir("."))
 //    http.ServeFile(w , r , "/css/main.css")
 //    http.ServeFile(w , r , "/css/mq_800-pus.css")
 //    http.ServeFile(w , r , "/css/mcleod-reset.css")
-    http.ServeFile(w , r , "index.html")
+//    http.ServeFile(w , r , "index.html")
 
 
     
     
-  //  if r.URL.Path != "/" {
-//        errorHandler(w, r, http.StatusNotFound)
-//        return
-//    }
+
     
 //    tmpl, err := template.Must(template.ParseFiles("index.html"))
 
@@ -55,7 +58,7 @@ func handler(w http.ResponseWriter, r *http.Request){
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
-        http.HandleFunc("/", homeHandler)
+    http.HandleFunc("/", homeHandler)
     http.HandleFunc("/smth/", smthHandler)
     
 //    tpl = template.Must(template.ParseFiles("templatePractice.gohtml"))

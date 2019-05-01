@@ -71,8 +71,8 @@ func projectHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func imageHandler(w http.ResponseWriter, r *http.Request){
-    fmt.Fprint(w, r.URL.Path)
-//    http.ServeFile(w , r, r.URL.Path)
+//    fmt.Fprint(w, r.URL.Path)
+    http.ServeFile(w , r, r.URL.Path)
 
     
  //   http.Handle("/media/img/", http.FileServer(http.Dir(".")))

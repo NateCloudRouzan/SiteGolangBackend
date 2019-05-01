@@ -63,7 +63,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
-    http.HandleFunc("/main.css", mainCSSHandler)
+    http.HandleFunc("main.css", mainCSSHandler)
 
     http.HandleFunc("/css/", cssServer)
 

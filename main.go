@@ -10,15 +10,17 @@ import (
 
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
+    ServeFile(w , r , "index.html")
+    
     
   //  if r.URL.Path != "/" {
 //        errorHandler(w, r, http.StatusNotFound)
 //        return
 //    }
     
-    tmpl, err := template.Must(template.ParseFiles("index.html"))
+//    tmpl, err := template.Must(template.ParseFiles("index.html"))
 
-    err = tmpl.Execute(w, 8)
+//    err = tmpl.Execute(w, 8)
     
 //    http.FileServer(http.Dir("."))
     

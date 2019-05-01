@@ -70,6 +70,10 @@ func projectHandler(w http.ResponseWriter, r *http.Request) {
         http.ServeFile(w , r , "projects.html")
 }
 
+func imageHandler(w http.ResponseWriter, r *http.Request){
+    http.Handle("/media/img/", http.FileServer(http.Dir(".")))
+}
+
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
@@ -79,8 +83,14 @@ func init() {
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
 
     http.HandleFunc("/css/", cssServer)
+    http.HandleFunc("/media/img/", imageHandler)
+
+    
 
     http.HandleFunc("/smth/", smthHandler)
+    
+    
+    
     
 //    tpl = template.Must(template.ParseFiles("templatePractice.gohtml"))
     

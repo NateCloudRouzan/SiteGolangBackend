@@ -11,12 +11,12 @@ import (
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     
-    http.FileServer(http.Dir("."))
-    
-//    http.ServeFile(w , r , "index.html")
-//    http.ServeFile(w , r , "main.css")
-//    http.ServeFile(w , r , "mq_800-pus.css")
-//    http.ServeFile(w , r , "mcleod-reset.css")
+//    http.FileServer(http.Dir("."))
+    http.ServeFile(w , r , "main.css")
+    http.ServeFile(w , r , "mq_800-pus.css")
+    http.ServeFile(w , r , "mcleod-reset.css")
+    http.ServeFile(w , r , "index.html")
+
 
     
     

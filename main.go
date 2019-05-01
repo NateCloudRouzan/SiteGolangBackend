@@ -14,14 +14,11 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
         errorHandler(w, r, http.StatusNotFound)
         return
     }
-    
-    fs := http.FileServer(http.Dir("index"))
-    http.Handle("/", fs)
 //    http.FileServer(http.Dir("."))
 //    http.ServeFile(w , r , "/css/main.css")
 //    http.ServeFile(w , r , "/css/mq_800-pus.css")
 //    http.ServeFile(w , r , "/css/mcleod-reset.css")
-//    http.ServeFile(w , r , "index.html")
+    http.ServeFile(w , r , "index.html")
 
 
     

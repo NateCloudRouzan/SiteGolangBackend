@@ -67,11 +67,15 @@ func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func projectHandler(w http.ResponseWriter, r *http.Request) {
-        http.ServeFile(w , r , "projects.html")
+    http.ServeFile(w , r , "projects.html")
 }
 
 func imageHandler(w http.ResponseWriter, r *http.Request){
-    http.Handle("/media/img/", http.FileServer(http.Dir(".")))
+    fmt.Fprint(w, r.URL.Path)
+//    http.ServeFile(w , r, r.URL.Path)
+
+    
+ //   http.Handle("/media/img/", http.FileServer(http.Dir(".")))
 }
 
 

@@ -10,7 +10,7 @@ import (
 
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-    ServeFile(w , r , "index.html")
+    http.ServeFile(w , r , "index.html")
     
     
   //  if r.URL.Path != "/" {

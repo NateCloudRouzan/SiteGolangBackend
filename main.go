@@ -14,7 +14,9 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
         errorHandler(w, r, http.StatusNotFound)
         return
     }
-    fmt.Fprint(w, "welcome home")
+    http.FileServer(http.Dir("."))
+    
+//    fmt.Fprint(w, "welcome home")
 }
 
 func smthHandler(w http.ResponseWriter, r *http.Request) {

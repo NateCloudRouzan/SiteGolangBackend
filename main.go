@@ -50,11 +50,11 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 }
 
 func cssServer(w http.ResponseWriter, r *http.Request){ 
-    http.ServeFile(w , r , "/css/main.css")
-    http.ServeFile(w , r , "/css/mq_800-pus.css")
-    http.ServeFile(w , r , "/css/mcleod-reset.css")
+//    http.ServeFile(w , r , "/css/main.css")
+//    http.ServeFile(w , r , "/css/mq_800-pus.css")
+//    http.ServeFile(w , r , "/css/mcleod-reset.css")
     
-//    http.Handle("/", http.FileServer(http.Dir(".")))
+      http.Handle("/", http.FileServer(http.Dir(".")))
 }
 
 func handler(w http.ResponseWriter, r *http.Request){ 

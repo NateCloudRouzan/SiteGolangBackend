@@ -66,6 +66,9 @@ func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "mcleod-reset.css")
 }
 
+func projectHandler(w http.ResponseWriter, r *http.Request) {
+        http.ServeFile(w , r , "projects.html")
+}
 
 
 func init() {

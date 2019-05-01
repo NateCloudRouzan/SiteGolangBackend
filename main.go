@@ -18,7 +18,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
     
     tmpl, err := template.Must(template.ParseFiles("index.html"))
 
-    err = tmpl.Execute(w, "Hello")
+    err = tmpl.Execute(w, 8)
     
 //    http.FileServer(http.Dir("."))
     

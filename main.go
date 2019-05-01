@@ -18,7 +18,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
     
     tmpl, err := template.New("name").Parse("index.html")
     // Error checking elided
-    err = tmpl.Execute(out, data)
+    err = tmpl.Execute(w, "Hello")
     
 //    http.FileServer(http.Dir("."))
     

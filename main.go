@@ -11,13 +11,13 @@ import (
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     
-    if r.URL.Path != "/" {
-        errorHandler(w, r, http.StatusNotFound)
-        return
-    }
+  //  if r.URL.Path != "/" {
+//        errorHandler(w, r, http.StatusNotFound)
+//        return
+//    }
     
-    tmpl, err := template.New("name").Parse("index.html")
-    // Error checking elided
+    tmpl, err := template.Must(template.ParseFiles("index.html"))
+
     err = tmpl.Execute(w, "Hello")
     
 //    http.FileServer(http.Dir("."))

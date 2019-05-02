@@ -70,6 +70,10 @@ func projectHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "projects.html")
 }
 
+func projectHandler(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w , r , "index.html")
+}
+
 func imageHandler(w http.ResponseWriter, r *http.Request){
 //    fmt.Fprint(w, r.URL.Path)
     http.ServeFile(w , r, r.URL.Path)
@@ -89,6 +93,8 @@ func init() {
 
     http.HandleFunc("/css/", cssServer)
     http.HandleFunc("/media/img/", imageHandler)
+    
+    http.HandleFunc("/GolangPractice/", udemyHandler)
 
     
 

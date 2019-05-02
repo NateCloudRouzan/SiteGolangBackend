@@ -70,7 +70,7 @@ func projectHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "projects.html")
 }
 
-func projectHandler(w http.ResponseWriter, r *http.Request) {
+func udemyHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "index.html")
 }
 

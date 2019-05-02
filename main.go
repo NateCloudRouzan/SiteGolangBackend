@@ -71,7 +71,8 @@ func projectHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func udemyHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "/GolangPractice/UdemyHome.html")
+    fmt.Fprintf(w, r.URL.Path)
+    //http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
 }
 
 func imageHandler(w http.ResponseWriter, r *http.Request){

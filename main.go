@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-    "fmt"
+//    "fmt"
 //    "html/template"
 )
 
@@ -64,12 +64,12 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 }
 */
 func init() {
-	//http.Handle("/", http.FileServer(http.Dir("."))) //If i ever just wanted to serve all of it
-    http.HandleFunc("/", homeHandler)
-    http.HandleFunc("/projects.html", projectHandler)
-    http.HandleFunc("/main.css", mainCSSHandler)
-    http.HandleFunc("/mq_800-plus.css", plusCSSHandler)
-    http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
+	http.Handle("/", http.FileServer(http.Dir("."))) //If i ever just wanted to serve all of it
+//    http.HandleFunc("/", homeHandler)
+//    http.HandleFunc("/projects.html", projectHandler)
+//    http.HandleFunc("/main.css", mainCSSHandler)
+//    http.HandleFunc("/mq_800-plus.css", plusCSSHandler)
+//    http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
     
 //    http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 

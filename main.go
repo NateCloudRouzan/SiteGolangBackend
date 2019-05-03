@@ -6,9 +6,6 @@ import (
 //    "html/template"
 )
 
-
-
-
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/" && r.URL.Path != "/index.html" {
         errorHandler(w, r, http.StatusNotFound)
@@ -50,13 +47,6 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {
     //http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
 }
 
-func imageHandler(w http.ResponseWriter, r *http.Request){
-//    fmt.Fprint(w, r.URL.Path)
-    http.ServeFile(w , r, r.URL.Path)
-
-    
- //   http.Handle("/media/img/", http.FileServer(http.Dir(".")))
-}
 /*
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("layout.html"))
@@ -81,10 +71,10 @@ func init() {
     http.HandleFunc("/mq_800-plus.css", plusCSSHandler)
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
     
-    http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
+//    http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
+
 //    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
     
-//    http.HandleFunc("/media/img/", imageHandler)
     
     http.HandleFunc("/GolangPractice/", udemyHandler)
     http.HandleFunc("/smth/", smthHandler)

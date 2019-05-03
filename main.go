@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
     "fmt"
-    "html/template"
+//    "html/template"
 )
 
 
@@ -16,12 +16,6 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
     }
 //    http.FileServer(http.Dir("."))
     http.ServeFile(w , r , "index.html")
-    
-//    tmpl, err := template.Must(template.ParseFiles("index.html"))
-
-//    err = tmpl.Execute(w, 8)
-    
-//    http.FileServer(http.Dir("."))
     
 //    fmt.Fprint(w, "welcome home")
 }
@@ -39,14 +33,6 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
     if status == http.StatusNotFound {
         fmt.Fprint(w, "custom 404")
     }
-}
-
-func cssServer(w http.ResponseWriter, r *http.Request){ 
-//    http.ServeFile(w , r , "/css/main.css")
-//    http.ServeFile(w , r , "/css/mq_800-pus.css")
-//    http.ServeFile(w , r , "/css/mcleod-reset.css")
-    
-      http.Handle("/css/", http.FileServer(http.Dir(".")))
 }
 
 func handler(w http.ResponseWriter, r *http.Request){ 
@@ -71,7 +57,7 @@ func imageHandler(w http.ResponseWriter, r *http.Request){
     
  //   http.Handle("/media/img/", http.FileServer(http.Dir(".")))
 }
-
+/*
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("layout.html"))
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -86,9 +72,9 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 		tmpl.Execute(w, data)
 	})
 }
-
+*/
 func init() {
-	//http.Handle("/", http.FileServer(http.Dir(".")))
+	//http.Handle("/", http.FileServer(http.Dir("."))) //If i ever just wanted to serve all of it
     http.HandleFunc("/", homeHandler)
     http.HandleFunc("/projects.html", projectHandler)
     http.HandleFunc("/main.css", mainCSSHandler)

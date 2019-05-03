@@ -41,6 +41,17 @@ func projectHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "projects.html")
 }
 
+
+func mainCSSHandler(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w , r , "main.css")
+}
+func plusCSSHandler(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w , r , "mq_800-plus.css")
+}
+func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w , r , "mcleod-reset.css")
+}
+
 func udemyHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, r.URL.Path)
     

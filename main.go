@@ -81,8 +81,6 @@ func init() {
     http.HandleFunc("/main.css", mainCSSHandler)
     http.HandleFunc("/mq_800-plus.css", plusCSSHandler)
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
-
-    http.HandleFunc("/css/", cssServer)
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 
 //    http.HandleFunc("/media/img/", imageHandler)

@@ -72,6 +72,7 @@ func projectHandler(w http.ResponseWriter, r *http.Request) {
 
 func udemyHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, r.URL.Path)
+    
     //http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
 }
 
@@ -93,7 +94,9 @@ func init() {
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
 
     http.HandleFunc("/css/", cssServer)
-    http.HandleFunc("/media/img/", imageHandler)
+    http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
+
+//    http.HandleFunc("/media/img/", imageHandler)
     
     http.HandleFunc("/GolangPractice/", udemyHandler)
 

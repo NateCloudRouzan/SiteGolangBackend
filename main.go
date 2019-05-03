@@ -54,18 +54,6 @@ func handler(w http.ResponseWriter, r *http.Request){
 }
 
 
-func mainCSSHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "main.css")
-}
-
-func plusCSSHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "mq_800-plus.css")
-}
-
-func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "mcleod-reset.css")
-}
-
 func projectHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "projects.html")
 }
@@ -106,40 +94,14 @@ func init() {
     http.HandleFunc("/main.css", mainCSSHandler)
     http.HandleFunc("/mq_800-plus.css", plusCSSHandler)
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
-
-    http.HandleFunc("/css/", cssServer)
     
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
-    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
-
-
-    //I think strip prefix is the answer
+//    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
     
 //    http.HandleFunc("/media/img/", imageHandler)
     
-  
-    //tmpl := template.Must(template.ParseFiles("layout.html"))
-//    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-//		data := TodoPageData{
-//			PageTitle: "My TODO list",
-//			Todos: []Todo{
-//				{Title: "Task 1", Done: false},
-//				{Title: "Task 2", Done: true},
-//				{Title: "Task 3", Done: true},
-//			},
-//		}
-//		tmpl.Execute(w, data)
-//	})
-    
-    
     http.HandleFunc("/GolangPractice/", udemyHandler)
-
-    
-
     http.HandleFunc("/smth/", smthHandler)
-    
-    
-    
     
 //    tpl = template.Must(template.ParseFiles("templatePractice.gohtml"))
     

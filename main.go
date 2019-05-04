@@ -65,7 +65,7 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 }
 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
-    http.ServeFile(w , r , "./GolangPractice/UdemyHome.html")
+    http.ServeFile(w , r , "./GolangPractice/layout.html")
     
 //    fmt.Fprintf(w, "Trying to serve all projects here")
 

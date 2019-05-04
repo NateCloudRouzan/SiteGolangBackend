@@ -66,10 +66,10 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
     //    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
-    if r.URL.Path == "/GolangPractice/template1" {
-        templateHandler(w,r)
-        return
-    }
+//    if r.URL.Path == "/GolangPractice/template1" {
+//        templateHandler(w,r)
+//        return
+//    }
     
     http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
     //fmt.Fprint(w, r.URL.Path)

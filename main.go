@@ -114,6 +114,8 @@ func init() {
 
     http.HandleFunc("/GolangPractice", udemyHandler)
     http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
+    http.HandleFunc("/GolangPractice/template1", templateHandler)
+
     http.HandleFunc("/GolangPractice/layout.html", template1Layout)
 
 

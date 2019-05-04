@@ -82,7 +82,7 @@ func init() {
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 
-    //http.HandleFunc("/GolangPractice", udemyHandler)
+    http.HandleFunc("/GolangPractice", udemyHandler)
     http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
 
     http.HandleFunc("/smth/", smthHandler)

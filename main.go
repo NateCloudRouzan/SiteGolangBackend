@@ -65,7 +65,6 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 }
 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
-    http.ServeFile(w , r , "./GolangPractice/layout.html")
     
 //    fmt.Fprintf(w, "Trying to serve all projects here")
 
@@ -97,8 +96,10 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func template1Layout(w http.ResponseWriter, r *http.Request){
-    fmt.Fprintf(w, "Trying to grab layout.html")
-        //http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
+    http.ServeFile(w , r , "./GolangPractice/layout.html")
+
+    
+    //fmt.Fprintf(w, "Trying to grab layout.html")
 
 }
 

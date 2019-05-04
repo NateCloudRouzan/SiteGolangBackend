@@ -71,13 +71,14 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
         return
     }
     
-    fmt.Fprint(w, r.URL.Path)
+    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
+    //fmt.Fprint(w, r.URL.Path)
 }
                                                          
 
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("http://cloudrouzan.com/GolangPractice/layout.html"))
-    http.HandleFunc("/GolangPractice/template1", func(w http.ResponseWriter, r *http.Request) {
+  //  http.HandleFunc("/GolangPractice/template1", func(w http.ResponseWriter, r *http.Request) {
 		data := TodoPageData{
 			PageTitle: "My TODO list",
 			Todos: []Todo{
@@ -87,7 +88,7 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 			},
 		}
 		tmpl.Execute(w, data)
-	})
+//	})
 }
 
 func init() {

@@ -56,7 +56,7 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
     //    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
-    if r.URL.Path != "/GolangPractice/template1" {
+    if r.URL.Path != "template1" {
         fmt.Fprint(w, "other shit")
         return
     }

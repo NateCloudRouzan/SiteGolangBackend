@@ -67,7 +67,7 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
     //    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
     if r.URL.Path == "/GolangPractice/template1" {
-        //fmt.Fprint(w, "Made it to the right thing")
+        templateHandler(w,r)
         return
     }
     
@@ -76,7 +76,7 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
                                                          
 
 func templateHandler(w http.ResponseWriter, r *http.Request){
-    tmpl := template.Must(template.ParseFiles("layout.html"))
+    tmpl := template.Must(template.ParseFiles("http://cloudrouzan.com/GolangPractice/layout.html"))
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		data := TodoPageData{
 			PageTitle: "My TODO list",

@@ -49,7 +49,7 @@ func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal for my webpages
-    http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
+    //http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
    // http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/UdemyHome.html")))
 }
 
@@ -82,8 +82,8 @@ func init() {
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 
-    http.HandleFunc("/GolangPractice", udemyHandler)
-    http.HandleFunc("/GolangPractice", udemyProjectsHandler)
+    //http.HandleFunc("/GolangPractice", udemyHandler)
+    http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
 
     http.HandleFunc("/smth/", smthHandler)
     

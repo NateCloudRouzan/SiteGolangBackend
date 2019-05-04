@@ -71,7 +71,7 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
 //        return
 //    }
     
-    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
+    http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/")))
     //fmt.Fprint(w, r.URL.Path)
 }
                                                          

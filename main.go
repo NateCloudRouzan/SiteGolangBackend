@@ -11,9 +11,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
         errorHandler(w, r, http.StatusNotFound)
         return
     }
-//    http.FileServer(http.Dir("."))
     http.ServeFile(w , r , "index.html")
-    
 //    fmt.Fprint(w, "welcome home")
 }
 
@@ -36,11 +34,9 @@ func handler(w http.ResponseWriter, r *http.Request){
     fmt.Fprintf(w, "Path: %s, Length:", r.URL.Path[1:], len(r.URL.Path[1:]))
 }
 
-
 func projectHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "projects.html")
 }
-
 
 func mainCSSHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "main.css")
@@ -52,12 +48,14 @@ func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "mcleod-reset.css")
 }
 
-func udemyHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, r.URL.Path)
-    
-    //http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
+func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal for my webpages
+    http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
 }
 
+func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { Should be a repo of all of my projects
+        http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
+}
+                                                         
 /*
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("layout.html"))
@@ -83,9 +81,9 @@ func init() {
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 
-//    http.HandleFunc("/media/img/", imageHandler)
+    http.HandleFunc("/GolangPractice", udemyHandler)
+    http.HandleFunc("/GolangPractice", udemyProjectsHandler)
 
-    http.HandleFunc("/GolangPractice/", udemyHandler)
     http.HandleFunc("/smth/", smthHandler)
     
 //    tpl = template.Must(template.ParseFiles("templatePractice.gohtml"))

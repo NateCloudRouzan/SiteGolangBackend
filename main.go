@@ -82,16 +82,17 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
 
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("http://cloudrouzan.com/GolangPractice/layout.html"))
-  //  http.HandleFunc("/GolangPractice/template1", func(w http.ResponseWriter, r *http.Request) {
-		data := TodoPageData{
-			PageTitle: "My TODO list",
-			Todos: []Todo{
-				{Title: "Task 1", Done: false},
-				{Title: "Task 2", Done: true},
-				{Title: "Task 3", Done: true},
-			},
-		}
-		tmpl.Execute(w, data)
+    fmt.Fprintf(w, "MAde it passed line 1")
+    //  http.HandleFunc("/GolangPractice/template1", func(w http.ResponseWriter, r *http.Request) {
+//		data := TodoPageData{
+//			PageTitle: "My TODO list",
+//			Todos: []Todo{
+//				{Title: "Task 1", Done: false},
+//				{Title: "Task 2", Done: true},
+//				{Title: "Task 3", Done: true},
+//			},
+//		}
+//		tmpl.Execute(w, data)
 //	})
 }
 

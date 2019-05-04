@@ -61,7 +61,7 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
         return
     }
     
-    fmt.Fprint(w, "other shit")
+    fmt.Fprint(w, r.URL.Path)
 }
                                                          
 /*

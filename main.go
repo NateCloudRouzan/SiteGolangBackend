@@ -49,10 +49,11 @@ func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal for my webpages
-    http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
+    //http.ServeFile(w , r , "../GolangPractice/UdemyHome.html")
+    http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/UdemyHome.html")))
 }
 
-func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { Should be a repo of all of my projects
+func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
         http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
 }
                                                          

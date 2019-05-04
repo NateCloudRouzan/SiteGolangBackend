@@ -65,16 +65,19 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 }
 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
+        fmt.Fprintf(w, "Trying to serve all projects here")
+
+    
     //    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
 //    if r.URL.Path == "/GolangPractice/template1" {
-        templateHandler(w,r)
+ //       templateHandler(w,r)
 //        return
 //    }
     
 //    http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/")))
     //fmt.Fprint(w, r.URL.Path)
 }
-                                                         
+    
 
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("http://cloudrouzan.com/GolangPractice/layout.html"))
@@ -91,6 +94,12 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 //	})
 }
 
+func template1Layout(w http.ResponseWriter, r *http.Request){
+    fmt.Fprintf(w, "Trying to grab layout.html")
+        //http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
+
+}
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -102,6 +111,8 @@ func init() {
 
     http.HandleFunc("/GolangPractice", udemyHandler)
     http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
+    http.HandleFunc("/GolangPractice/layout.html", template1Layout)
+
 
     http.HandleFunc("/smth/", smthHandler)
     

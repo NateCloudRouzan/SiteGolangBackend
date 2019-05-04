@@ -57,14 +57,14 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
     //    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
     if r.URL.Path == "/GolangPractice/template1" {
-        fmt.Fprint(w, "Made it to the right thing")
+        //fmt.Fprint(w, "Made it to the right thing")
         return
     }
     
     fmt.Fprint(w, r.URL.Path)
 }
                                                          
-/*
+
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("layout.html"))
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -79,7 +79,7 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 		tmpl.Execute(w, data)
 	})
 }
-*/
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -94,10 +94,5 @@ func init() {
 
     http.HandleFunc("/smth/", smthHandler)
     
-//    tpl = template.Must(template.ParseFiles("templatePractice.gohtml"))
-    
-//    err := tpl.Execute(os.Stdout, "From GolangFile")
-//    if err != nil{
-//        log.Fatlln(err)
-//    }
+
 }

@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
     "fmt"
-//    "html/template"
+    "html/template"
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {

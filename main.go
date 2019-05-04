@@ -77,7 +77,7 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
 
 func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("http://cloudrouzan.com/GolangPractice/layout.html"))
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+    http.HandleFunc("/GolangPractice/template1", func(w http.ResponseWriter, r *http.Request) {
 		data := TodoPageData{
 			PageTitle: "My TODO list",
 			Todos: []Todo{

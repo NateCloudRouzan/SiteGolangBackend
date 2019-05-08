@@ -81,23 +81,21 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
     
 
 func templateHandler(w http.ResponseWriter, r *http.Request){
-    tmpl := template.Must(template.ParseFiles("http://cloudrouzan.com/GolangPractice/layout.html"))
-    fmt.Fprintf(w, "MAde it passed line 1")
-      http.HandleFunc("/GolangPractice/template1", func(w http.ResponseWriter, r *http.Request) {
-		data := TodoPageData{
+    tmpl := template.Must(template.ParseFiles("layout.html"))
+  // fmt.Fprintf(w, "MAde it passed line 1")
+     data := TodoPageData{
 			PageTitle: "My TODO list",
 			Todos: []Todo{
 				{Title: "Task 1", Done: false},
 				{Title: "Task 2", Done: true},
 				{Title: "Task 3", Done: true},
 			},
-		}
-		tmpl.Execute(w, data)
-	})
+      }
+     tmpl.Execute(w, data)
 }
 
 func template1Layout(w http.ResponseWriter, r *http.Request){
-    http.ServeFile(w , r , "./GolangPractice/layout.html")
+    http.ServeFile(w , r , "layout.html")
 
     
     //fmt.Fprintf(w, "Trying to grab layout.html")
@@ -117,7 +115,7 @@ func init() {
     http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
     http.HandleFunc("/GolangPractice/template1", templateHandler)
 
-    http.HandleFunc("/GolangPractice/layout.html", template1Layout)
+    http.HandleFunc("/layout.html", template1Layout)
 
 
     http.HandleFunc("/smth/", smthHandler)

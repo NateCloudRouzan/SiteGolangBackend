@@ -65,18 +65,7 @@ func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal 
 }
 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
-    
-//    fmt.Fprintf(w, "Trying to serve all projects here")
 
-    
-    //    http.Handle("/GolangPractice/", http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/"))))
-//    if r.URL.Path == "/GolangPractice/template1" {
- //       templateHandler(w,r)
-//        return
-//    }
-    
-//    http.StripPrefix("/GolangPractice/", http.FileServer(http.Dir("./GolangPractice/")))
-    //fmt.Fprint(w, r.URL.Path)
 }
     
 
@@ -84,11 +73,11 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("layout.html"))
   // fmt.Fprintf(w, "MAde it passed line 1")
      data := TodoPageData{
-			PageTitle: "My TODO list",
+			PageTitle: "Template Executed Right if this the title",
 			Todos: []Todo{
-				{Title: "Task 1", Done: false},
-				{Title: "Task 2", Done: true},
-				{Title: "Task 3", Done: true},
+				{Title: "Get shiii done", Done: false},
+				{Title: "sent from golang template", Done: true},
+				{Title: "This is a good feelin", Done: true},
 			},
       }
      tmpl.Execute(w, data)
@@ -96,15 +85,17 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
 
 func template1Layout(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "layout.html")
+}
 
-    
-    //fmt.Fprintf(w, "Trying to grab layout.html")
-
+func iconHandler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "faceIcon.ico")
 }
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
+    http.HandleFunc("/faceIcon.ico", iconHandler)
+
     http.HandleFunc("/projects.html", projectHandler)
     http.HandleFunc("/main.css", mainCSSHandler)
     http.HandleFunc("/mq_800-plus.css", plusCSSHandler)

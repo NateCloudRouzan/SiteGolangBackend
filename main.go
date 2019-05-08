@@ -79,7 +79,9 @@ func simpleTemplateInt (w http.ResponseWriter, r *http.Request){
 }
 
 func templateslice (w http.ResponseWriter, r *http.Request){
-
+    greetings :=[]string{"Yo", "Hi", "Howdy", "Hello", "Wassup"}
+//    tmpl := template.Must(template.ParseFiles("template_simple.html"))
+//    tmpl.Execute(w, 48)
 }
 
 func templateMap (w http.ResponseWriter, r *http.Request){

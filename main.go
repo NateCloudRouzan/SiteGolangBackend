@@ -131,7 +131,7 @@ func init() {
     
     http.HandleFunc("/GolangPractice/template1", templateStruct)
     http.HandleFunc("/GolangPractice/template_string", simpleTemplateString)
-    http.HandleFunc("/GolangPractice/template_int", simpleTemplateString)
+    http.HandleFunc("/GolangPractice/template_int", simpleTemplateInt)
 
 
 

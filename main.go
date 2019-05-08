@@ -101,7 +101,7 @@ func templateStruct(w http.ResponseWriter, r *http.Request){
 
 //Need to implement time Package
 
-func template1Layout(w http.ResponseWriter, r *http.Request){
+func template2Layout(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "template_simple.html")
 }
 
@@ -132,7 +132,7 @@ func init() {
     http.HandleFunc("/GolangPractice/template_string", simpleTemplateString)
 
 
-    http.HandleFunc("/template_struct.html", template1Layout
+    http.HandleFunc("/template_struct.html", template2Layout
     http.HandleFunc("/template_simple.html", template1Layout)
 
 

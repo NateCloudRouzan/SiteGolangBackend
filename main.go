@@ -70,7 +70,7 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
     
 func simpleTemplateString (w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("template_simple.html"))
-    tmpl.Execute(w, data)
+    tmpl.Execute(w, `From Main.go we doin it!`)
 }
 
 func simpleTemplateInt (w http.ResponseWriter, r *http.Request){

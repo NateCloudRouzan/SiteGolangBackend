@@ -74,7 +74,8 @@ func simpleTemplateString (w http.ResponseWriter, r *http.Request){
 }
 
 func simpleTemplateInt (w http.ResponseWriter, r *http.Request){
-
+    tmpl := template.Must(template.ParseFiles("template_simple.html"))
+    tmpl.Execute(w, 48)
 }
 
 func templateslice (w http.ResponseWriter, r *http.Request){
@@ -130,6 +131,8 @@ func init() {
     
     http.HandleFunc("/GolangPractice/template1", templateStruct)
     http.HandleFunc("/GolangPractice/template_string", simpleTemplateString)
+    http.HandleFunc("/GolangPractice/template_int", simpleTemplateString)
+
 
 
     http.HandleFunc("/template_struct.html", template2Layout)

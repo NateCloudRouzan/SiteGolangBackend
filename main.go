@@ -69,7 +69,8 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
 }
     
 func simpleTemplateString (w http.ResponseWriter, r *http.Request){
-
+    tmpl := template.Must(template.ParseFiles("template_simple.html"))
+    tmpl.Execute(w, data)
 }
 
 func simpleTemplateInt (w http.ResponseWriter, r *http.Request){
@@ -85,7 +86,7 @@ func templateMap (w http.ResponseWriter, r *http.Request){
 }
 
 func templateStruct(w http.ResponseWriter, r *http.Request){
-    tmpl := template.Must(template.ParseFiles("layout.html"))
+    tmpl := template.Must(template.ParseFiles("template_struct.html"))
   // fmt.Fprintf(w, "MAde it passed line 1")
      data := TodoPageData{
 			PageTitle: "Template Executed Right if this the title",
@@ -100,9 +101,12 @@ func templateStruct(w http.ResponseWriter, r *http.Request){
 
 //Need to implement time Package
 
+func template1Layout(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "template_simple.html")
+}
 
 func template1Layout(w http.ResponseWriter, r *http.Request){
-    http.ServeFile(w , r , "layout.html")
+    http.ServeFile(w , r , "template_struct.html")
 }
 
 func iconHandler(w http.ResponseWriter, r *http.Request){
@@ -122,9 +126,15 @@ func init() {
 
     http.HandleFunc("/GolangPractice", udemyHandler)
     http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
+    
+    
     http.HandleFunc("/GolangPractice/template1", templateStruct)
+    http.HandleFunc("/GolangPractice/template_string", simpleTemplateString)
 
-    http.HandleFunc("/layout.html", template1Layout)
+
+    http.HandleFunc("/template_struct.html", template1Layout
+    http.HandleFunc("/template_simple.html", template1Layout)
+
 
 
     http.HandleFunc("/smth/", smthHandler)

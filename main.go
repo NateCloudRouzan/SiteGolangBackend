@@ -68,8 +68,23 @@ func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be 
 
 }
     
+func simpleTemplateString (w http.ResponseWriter, r *http.Request){
 
-func templateHandler(w http.ResponseWriter, r *http.Request){
+}
+
+func simpleTemplateInt (w http.ResponseWriter, r *http.Request){
+
+}
+
+func templateslice (w http.ResponseWriter, r *http.Request){
+
+}
+
+func templateMap (w http.ResponseWriter, r *http.Request){
+
+}
+
+func templateStruct(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("layout.html"))
   // fmt.Fprintf(w, "MAde it passed line 1")
      data := TodoPageData{
@@ -83,18 +98,21 @@ func templateHandler(w http.ResponseWriter, r *http.Request){
      tmpl.Execute(w, data)
 }
 
+//Need to implement time Package
+
+
 func template1Layout(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "layout.html")
 }
 
 func iconHandler(w http.ResponseWriter, r *http.Request){
-    http.ServeFile(w , r , "faceIcon.ico")
+    http.ServeFile(w , r , "cloudIcon.ico")
 }
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
-    http.HandleFunc("/faceIcon.ico", iconHandler)
+    http.HandleFunc("/cloudIcon.ico", iconHandler)
 
     http.HandleFunc("/projects.html", projectHandler)
     http.HandleFunc("/main.css", mainCSSHandler)
@@ -104,7 +122,7 @@ func init() {
 
     http.HandleFunc("/GolangPractice", udemyHandler)
     http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
-    http.HandleFunc("/GolangPractice/template1", templateHandler)
+    http.HandleFunc("/GolangPractice/template1", templateStruct)
 
     http.HandleFunc("/layout.html", template1Layout)
 

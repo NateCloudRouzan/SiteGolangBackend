@@ -80,8 +80,8 @@ func simpleTemplateInt (w http.ResponseWriter, r *http.Request){
 
 func templateslice (w http.ResponseWriter, r *http.Request){
     greetings :=[]string{"Yo", "Hi", "Howdy", "Hello", "Wassup"}
-//    tmpl := template.Must(template.ParseFiles("template_simple.html"))
-//    tmpl.Execute(w, 48)
+    tmpl := template.Must(template.ParseFiles("template_slice.html"))
+    tmpl.Execute(w, greetings)
 }
 
 func templateMap (w http.ResponseWriter, r *http.Request){
@@ -112,6 +112,10 @@ func template1Layout(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "template_struct.html")
 }
 
+func template3Layout(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "template_slice.html")
+}
+
 func iconHandler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "cloudIcon.ico")
 }
@@ -139,6 +143,8 @@ func init() {
 
     http.HandleFunc("/template_struct.html", template2Layout)
     http.HandleFunc("/template_simple.html", template1Layout)
+    http.HandleFunc("/template_slice.html", template3Layout)
+
 
 
 

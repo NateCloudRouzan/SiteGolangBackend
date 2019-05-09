@@ -89,7 +89,17 @@ func templateslice (w http.ResponseWriter, r *http.Request){
 }
 
 func templateMap (w http.ResponseWriter, r *http.Request){
-
+    nicknames := map[string]string{
+        "Nate": "Diesel",
+        "Amanuel": "Manny",
+        "Nathan": "Nose",
+        "Caelen": "Duece"
+       
+    }
+//    tmpl := template.Must(template.ParseFiles("template_slice.html"))
+//    tmpl.Execute(w, greetings)
+    fmt.fprintF(w, nicknames)
+    
 }
 
 func templateStruct(w http.ResponseWriter, r *http.Request){
@@ -141,9 +151,11 @@ func init() {
     http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
     
     
-    http.HandleFunc("/GolangPractice/template1", templateStruct)
-    http.HandleFunc("/GolangPractice/template_string", simpleTemplateString)
-    http.HandleFunc("/GolangPractice/template_int", simpleTemplateInt)
+    http.HandleFunc("/GolangPractice/string_template", simpleTemplateString)
+    http.HandleFunc("/GolangPractice/int_template", simpleTemplateInt)
+    http.HandleFunc("/GolangPractice/slice_template", templateslice)
+    http.HandleFunc("/GolangPractice/struct_template", templateStruct)
+
 
 
 

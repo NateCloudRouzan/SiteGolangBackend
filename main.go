@@ -93,12 +93,12 @@ func templateMap (w http.ResponseWriter, r *http.Request){
         "Nate": "Diesel",
         "Amanuel": "Manny",
         "Nathan": "Nose",
-        "Caelen": "Duece"
+        "Caelen": "Duece",
        
     }
 //    tmpl := template.Must(template.ParseFiles("template_slice.html"))
 //    tmpl.Execute(w, greetings)
-    fmt.fprintF(w, nicknames)
+    fmt.fprint(w, nicknames)
     
 }
 

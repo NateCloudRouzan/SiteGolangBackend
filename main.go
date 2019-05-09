@@ -98,7 +98,7 @@ func templateMap (w http.ResponseWriter, r *http.Request){
     }
 //    tmpl := template.Must(template.ParseFiles("template_slice.html"))
 //    tmpl.Execute(w, greetings)
-    fmt.fprint(w, nicknames)
+    fmt.Fprint(w, nicknames)
     
 }
 

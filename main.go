@@ -136,6 +136,29 @@ func iconHandler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "cloudIcon.ico")
 }
 
+func form1Handler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "form1.html")
+}
+
+func handlingForm(w http.ResponseWriter, r *http.Request){
+    tmpl := template.Must(template.ParseFiles("form1.html"))
+    if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+    }
+
+    details := ContactDetails{
+        Email:   r.FormValue("email"),
+        Subject: r.FormValue("subject"),
+        Message: r.FormValue("message"),
+    }
+
+    // do something with details
+    _ = details
+
+    tmpl.Execute(w, struct{ Success bool }{true})    
+}
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -150,7 +173,7 @@ func init() {
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 
     http.HandleFunc("/GolangPractice", udemyHandler)
-    http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
+ //   http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
     
     
     http.HandleFunc("/GolangPractice/string_template", simpleTemplateString)
@@ -159,13 +182,16 @@ func init() {
     http.HandleFunc("/GolangPractice/struct_template", templateStruct)
     http.HandleFunc("/GolangPractice/map_template", templateMap)
 
-
-
     http.HandleFunc("/template_simple.html", template1Layout)
     http.HandleFunc("/template_struct.html", template2Layout)
     http.HandleFunc("/template_slice.html", template3Layout)
     http.HandleFunc("/template_map.html", template4Layout)
 
+    http.HandleFunc("/form1.html", form1Handler)
+    http.HandleFunc("/first_form/", handlingForm)
+
+ 
+    
 
     http.HandleFunc("/smth/", smthHandler)
     

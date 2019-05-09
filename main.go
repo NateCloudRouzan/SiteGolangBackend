@@ -36,7 +36,7 @@ func smthHandler(w http.ResponseWriter, r *http.Request) {
 func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
     w.WriteHeader(status)
     if status == http.StatusNotFound {
-        fmt.Fprint(w, "custom 404")
+        http.ServeFile(w , r , "errorPage.html")
     }
 }
 
@@ -56,6 +56,10 @@ func plusCSSHandler(w http.ResponseWriter, r *http.Request) {
 }
 func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
     http.ServeFile(w , r , "mcleod-reset.css")
+}
+
+func errorPageHandler(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w , r , "errorPage.css")
 }
 
 func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal for my webpages
@@ -124,6 +128,8 @@ func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
     http.HandleFunc("/cloudIcon.ico", iconHandler)
+    http.HandleFunc("/errorPage.html", errorPageHandler)
+
 
     http.HandleFunc("/projects.html", projectHandler)
     http.HandleFunc("/main.css", mainCSSHandler)

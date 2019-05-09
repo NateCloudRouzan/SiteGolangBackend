@@ -16,6 +16,12 @@ type TodoPageData struct {
 	Todos     []Todo
 }
 
+type ContactDetails struct {
+	Email   string
+	Subject string
+	Message string
+}
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/" && r.URL.Path != "/index.html" {
         errorHandler(w, r, http.StatusNotFound)

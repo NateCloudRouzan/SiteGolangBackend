@@ -96,9 +96,8 @@ func templateMap (w http.ResponseWriter, r *http.Request){
         "Caelen": "Duece",
        
     }
-//    tmpl := template.Must(template.ParseFiles("template_slice.html"))
-//    tmpl.Execute(w, greetings)
-    fmt.Fprint(w, nicknames)
+    tmpl := template.Must(template.ParseFiles("template_map.html"))
+    tmpl.Execute(w, greetings)
     
 }
 
@@ -117,13 +116,16 @@ func templateStruct(w http.ResponseWriter, r *http.Request){
 }
 
 //Need to implement time Package
+func template1Layout(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "template_struct.html")
+}
 
 func template2Layout(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "template_simple.html")
 }
 
-func template1Layout(w http.ResponseWriter, r *http.Request){
-    http.ServeFile(w , r , "template_struct.html")
+func template4Layout(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "template_map.html")
 }
 
 func template3Layout(w http.ResponseWriter, r *http.Request){
@@ -155,15 +157,14 @@ func init() {
     http.HandleFunc("/GolangPractice/int_template", simpleTemplateInt)
     http.HandleFunc("/GolangPractice/slice_template", templateslice)
     http.HandleFunc("/GolangPractice/struct_template", templateStruct)
+    http.HandleFunc("/GolangPractice/map_template", templateMap)
 
 
 
-
-    http.HandleFunc("/template_struct.html", template2Layout)
     http.HandleFunc("/template_simple.html", template1Layout)
+    http.HandleFunc("/template_struct.html", template2Layout)
     http.HandleFunc("/template_slice.html", template3Layout)
-
-
+    http.HandleFunc("/template_map.html", template4Layout)
 
 
     http.HandleFunc("/smth/", smthHandler)

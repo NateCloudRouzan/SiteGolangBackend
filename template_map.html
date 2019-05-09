@@ -1,0 +1,8 @@
+<html><body>
+    <h1>Ranging over a slice</h1>
+    <ul>
+    {{range $index, $element := .}}
+        <li>{{$index}} - {{$element}}</li>
+        {{end}}
+    </ul>
+</body></html>

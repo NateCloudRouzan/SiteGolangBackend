@@ -40,8 +40,9 @@ header a {
 
 
 header a:hover {
-    color: #9dbb88;
+    color: #ff99ff;
 }
+
 
 header div a h1 {
     font-size: 1rem;
@@ -124,7 +125,7 @@ footer nav a {
     display: flex;
     align-items: center;
     padding-left: 3rem;
-    background-color: deepskyblue;
+    background-color: rgba(201, 76, 76, 0.3);
     border-top: 1px solid rgba(255,255,255,0.3);
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
@@ -134,7 +135,7 @@ footer nav a:last-child {
 }
 
 footer nav a:hover {
-    background-color: royalblue;
+    background-color: rgba(201, 76, 76, 0.3);
 }
 
 footer nav a svg {

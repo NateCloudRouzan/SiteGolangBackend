@@ -1,8 +1,6 @@
 <html><body>
-    <h1>Map Values from main.go</h1>
-    <ul>
-    {{range $index, $element := .}}
-        <li>{{$index}} - {{$element}}</li>
-        {{end}}
-    </ul>
+    <h1>Template for a Map (values come from main.go)</h1>
+    {{ range $key, $value := . }}
+   <li><strong>Name: {{ $key }}</strong> Nickname: {{ $value }}</li>
+    {{ end }}
 </body></html>

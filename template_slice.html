@@ -1,6 +1,8 @@
 <html><body>
-    <h1>Template for a map</h1>
-    {{ range $key, $value := . }}
-   <li><strong>Name: {{ $key }}</strong> Nickname: {{ $value }}</li>
-    {{ end }}
+    <h1>Ranging over a Slice</h1>
+    <ul>
+    {{range $index, $element := .}}
+        <li>{{$index}} - {{$element}}</li>
+        {{end}}
+    </ul>
 </body></html>

@@ -165,14 +165,20 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
     tmpl.Execute(w, struct{ Success bool }{true})    
 }
 
+func studentSealHandler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "StudentSeal.html")
+}
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
+    
     http.HandleFunc("/cloudIcon.ico", iconHandler)
     http.HandleFunc("/errorPage.html", errorPageHandler)
-
-
     http.HandleFunc("/projects.html", projectHandler)
+    http.HandleFunc("/StudentSeal.html", studentSealHandler)
+
+    
     http.HandleFunc("/main.css", mainCSSHandler)
     http.HandleFunc("/mq_800-plus.css", plusCSSHandler)
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
@@ -195,9 +201,6 @@ func init() {
 
     http.HandleFunc("/form1.html", form1Handler)
     http.HandleFunc("/first_form/", handlingForm)
-
- 
-    
 
     http.HandleFunc("/smth/", smthHandler)
     

@@ -181,7 +181,7 @@ func form2Handler(w http.ResponseWriter, r *http.Request){
 
 func form_2(w http.ResponseWriter, r *http.Request){
        tmpl := template.Must(template.ParseFiles("form2.html"))
-    if r.Method != http.MethodGet {
+    if r.Method != http.MethodPost {
 			tmpl.Execute(w, nil)
 			return
     }
@@ -206,7 +206,7 @@ func form3Handler(w http.ResponseWriter, r *http.Request){
 
 func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
-    if r.Method != http.MethodPost {
+    if r.Method != http.MethodGet {
 			tmpl.Execute(w, nil)
 			return
     }

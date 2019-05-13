@@ -24,8 +24,10 @@ type ContactDetails struct {
 
 type LoginInfo struct {
 	Success bool
-	Fname string
+    Autorized bool
+    Fname string
 	Lname string
+    Pword string
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -183,17 +185,16 @@ func form_2(w http.ResponseWriter, r *http.Request){
 			tmpl.Execute(w, nil)
 			return
     }
-
-//    first_name := r.FormValue("fname")
-//    last_name := r.FormValue("lname")
-//    password := r.FormValue("pword")
-
     
-//    if first_name == "Nate" && last_name == "Cloud" && password == "bannana"{
     c := LoginInfo{
         Success: true, 
         Fname: r.FormValue("fname"), 
         Lname: r.FormValue("lname"),
+        Pword: r.FormValue("pword"),
+    }
+    
+    if c.Fname == "Nate" && c.Pword == "banana"{
+        c.Autorized = true
     }
     
     tmpl.Execute(w, c)   

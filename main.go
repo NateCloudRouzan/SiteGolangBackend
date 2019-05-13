@@ -156,10 +156,10 @@ func form1Handler(w http.ResponseWriter, r *http.Request){
 
 func handlingForm(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form1.html"))
-    if r.Method != http.MethodPost {
-			tmpl.Execute(w, nil)
-			return
-    }
+//    if r.Method != http.MethodPost {
+//			tmpl.Execute(w, nil)
+//			return
+//    }
 
 //    first_name := r.FormValue("fname")
 //    last_name := r.FormValue("lname")

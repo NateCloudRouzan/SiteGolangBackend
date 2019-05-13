@@ -24,7 +24,7 @@ type ContactDetails struct {
 
 type LoginInfo struct {
 	Success bool
-    Autorized bool
+    Authorized bool
     Fname string
 	Lname string
     Pword string
@@ -193,8 +193,8 @@ func form_2(w http.ResponseWriter, r *http.Request){
         Pword: r.FormValue("pword"),
     }
     
-    if c.Fname == "Nate" && c.Pword == "banana"{
-        c.Autorized = true
+    if c.Fname == "Nate"{
+        c.Authorized = true
     }
     
     tmpl.Execute(w, c)   

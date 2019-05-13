@@ -188,10 +188,9 @@ func form_2(w http.ResponseWriter, r *http.Request){
     
     c := LoginInfo{
         Success: true, 
-        Fname: "N8", 
-        Lname: "Rouzan",
-//        Pword: r.FormValue("pword"),
-        Pword: "HAHA",
+        Fname: r.FormValue("fname"), 
+        Lname: r.FormValue("lname"),
+        Pword: r.FormValue("pword"),
     }
     
     if c.Fname == "Nate"{
@@ -212,11 +211,13 @@ func form_3(w http.ResponseWriter, r *http.Request){
 			return
     }
     
+
+    
     c := LoginInfo{
         Success: true, 
-        Fname: r.FormValue("fname"), 
-        Lname: r.FormValue("lname"),
-        Pword: r.FormValue("pword"),
+        Fname: r.FormValue("photo"), 
+        Lname: "Rouzan",
+        Pword: "HAHA",
     }
     
     if c.Fname == "Nate"{

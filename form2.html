@@ -1,0 +1,16 @@
+<html><body>
+{{if .Success}}
+	<h1>Thanks for your message!</h1>
+{{else}}
+	<h1>Login</h1>
+	<form method="POST">
+		<label>First Name:</label><br />
+		<input type="text" name="fname"><br />
+		<label>Last Name:</label><br />
+		<input type="text" name="lname"><br />
+		<label>Password:</label><br />
+		<textarea name="pword"></textarea><br />
+		<input type="submit">
+	</form>
+{{end}}
+</body></html>

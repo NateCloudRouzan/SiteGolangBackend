@@ -153,6 +153,29 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
 			return
     }
 
+    first_name := r.FormValue("fname")
+    last_name r.FormValue("lname")
+    password := r.FormValue("pword")
+
+    
+    if first_name == "Nate" && last_name == "Cloud" && password == "bannana"{
+        tmpl.Execute(w, struct{ Success bool }{true})    
+    }else{
+        tmpl.Execute(w, struct{ Success bool }{false})    
+    }
+}
+
+func form2Handler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "form2.html")
+}
+
+func form_2(w http.ResponseWriter, r *http.Request){
+    tmpl := template.Must(template.ParseFiles("form2.html"))
+    if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+    }
+
     details := ContactDetails{
         Email:   r.FormValue("email"),
         Subject: r.FormValue("subject"),
@@ -199,6 +222,9 @@ func init() {
     http.HandleFunc("/template_slice.html", template3Layout)
     http.HandleFunc("/template_map.html", template4Layout)
 
+    http.HandleFunc("/form2.html", form2Handler)
+    http.HandleFunc("/second_form/", form_2)
+    
     http.HandleFunc("/form1.html", form1Handler)
     http.HandleFunc("/first_form/", handlingForm)
 

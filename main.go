@@ -22,6 +22,12 @@ type ContactDetails struct {
 	Message string
 }
 
+type LoginInfo struct {
+	Success bool
+	Fname string
+	Lname string
+}
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/" && r.URL.Path != "/index.html" {
         errorHandler(w, r, http.StatusNotFound)
@@ -146,6 +152,8 @@ func form1Handler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "form1.html")
 }
 
+
+
 func handlingForm(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form1.html"))
     if r.Method != http.MethodPost {
@@ -153,32 +161,19 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
 			return
     }
 
-    first_name := r.FormValue("fname")
-    last_name := r.FormValue("lname")
-    password := r.FormValue("pword")
+//    first_name := r.FormValue("fname")
+//    last_name := r.FormValue("lname")
+//    password := r.FormValue("pword")
 
     
-    if first_name == "Nate" && last_name == "Cloud" && password == "bannana"{
-        tmpl.Execute(w, struct{ 
-                            Success bool
-                            Fname string
-                            Lname string
-                        }{
-                            true,
-                            r.FormValue("fname"),
-                            r.FormValue("lname"),
-                            })    
-    }else{
-        tmpl.Execute(w, struct{ 
-                            Success bool
-                            Fname string
-                            Lname string
-                        }{
-                            true,
-                            r.FormValue("lname"),
-                            r.FormValue("lname"),
-                            }) 
+//    if first_name == "Nate" && last_name == "Cloud" && password == "bannana"{
+    c := LoginInfo{
+        Success: true, 
+        Fname: r.FormValue("fname"), 
+        Lname: r.FormValue("lname")
     }
+    
+    tmpl.Execute(w, c)    
 }
 
 func form2Handler(w http.ResponseWriter, r *http.Request){

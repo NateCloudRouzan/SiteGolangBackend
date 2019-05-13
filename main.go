@@ -220,8 +220,9 @@ func form_3(w http.ResponseWriter, r *http.Request){
         Pword: "HAHA",
     }
     
-    if c.Fname == "Nate"{
-        c.Authorized = true
+    if c.Fname == "failure"{
+        fmt.Fprint(w, "Processed")
+        return
     }
     
     tmpl.Execute(w, c)   

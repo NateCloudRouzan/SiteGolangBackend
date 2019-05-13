@@ -170,7 +170,7 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
     c := LoginInfo{
         Success: true, 
         Fname: r.FormValue("fname"), 
-        Lname: r.FormValue("lname")
+        Lname: r.FormValue("lname"),
     }
     
     tmpl.Execute(w, c)    

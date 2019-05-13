@@ -181,6 +181,32 @@ func form2Handler(w http.ResponseWriter, r *http.Request){
 
 func form_2(w http.ResponseWriter, r *http.Request){
        tmpl := template.Must(template.ParseFiles("form2.html"))
+    if r.Method != http.MethodGet {
+			tmpl.Execute(w, nil)
+			return
+    }
+    
+    c := LoginInfo{
+        Success: true, 
+        Fname: "N8", 
+        Lname: "Rouzan",
+//        Pword: r.FormValue("pword"),
+        Pword: "HAHA",
+    }
+    
+    if c.Fname == "Nate"{
+        c.Authorized = true
+    }
+    
+    tmpl.Execute(w, c)   
+}
+
+func form3Handler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "form3.html")
+}
+
+func form_3(w http.ResponseWriter, r *http.Request){
+    tmpl := template.Must(template.ParseFiles("form3.html"))
     if r.Method != http.MethodPost {
 			tmpl.Execute(w, nil)
 			return
@@ -234,11 +260,16 @@ func init() {
     http.HandleFunc("/template_slice.html", template3Layout)
     http.HandleFunc("/template_map.html", template4Layout)
 
-    http.HandleFunc("/form2.html", form2Handler)
-    http.HandleFunc("/second_form/", form_2)
-    
     http.HandleFunc("/form1.html", form1Handler)
+    http.HandleFunc("/form2.html", form2Handler)
+    http.HandleFunc("/form3.html", form3Handler)
+
+    
     http.HandleFunc("/first_form/", handlingForm)
+    http.HandleFunc("/second_form/", form_2)
+    http.HandleFunc("/third_form/", form_3)
+
+    
 
     http.HandleFunc("/smth/", smthHandler)
     

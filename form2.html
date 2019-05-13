@@ -1,6 +1,7 @@
 <html><body>
 {{if .Success}}
-	<h1>Thanks for your message!</h1>
+	<h1>Hey Nate</h1>
+    <img src="./media/img/failure.jpeg" alt="Failure" width="250" height="350">
 {{else}}
 	<h1>Login</h1>
 	<form method="POST">
@@ -9,7 +10,7 @@
 		<label>Last Name:</label><br />
 		<input type="text" name="lname"><br />
 		<label>Password:</label><br />
-		<textarea name="pword"></textarea><br />
+		<input type="text" name="pword"><br />
 		<input type="submit">
 	</form>
 {{end}}

@@ -206,13 +206,13 @@ func form3Handler(w http.ResponseWriter, r *http.Request){
 
 func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
-    if r.Method == "GET" {
+//    if r.Method == "GET" {
         //fmt.Fprint(w, r.Method)
         tmpl.Execute(w, nil)
         return
-    }
+//    }
     
-    fmt.Fprint(w, r.Method)
+//    fmt.Fprint(w, r.Method)
 
     
 /*    c := LoginInfo{
@@ -229,6 +229,10 @@ func form_3(w http.ResponseWriter, r *http.Request){
     
     tmpl.Execute(w, c)   
 */
+}
+
+func form_3_redir(w http.ResponseWriter, r *http.Request){
+    fmt.Fprint(w, r.Method)
 }
 
 func studentSealHandler(w http.ResponseWriter, r *http.Request){
@@ -272,7 +276,8 @@ func init() {
     
     http.HandleFunc("/first_form/", handlingForm)
     http.HandleFunc("/second_form/", form_2)
-    http.HandleFunc("/third_form/", form_3)
+    http.HandleFunc("/third_form", form_3)
+    http.HandleFunc("/third_form/", form_3_redir)
 
     
 

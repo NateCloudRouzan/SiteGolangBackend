@@ -165,8 +165,8 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
                             Lname string
                         }{
                             true,
-                            first_name,
-                            last_name,
+                            r.FormValue("fname"),
+                            r.FormValue("lname"),
                             })    
     }else{
         tmpl.Execute(w, struct{ 
@@ -175,8 +175,8 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
                             Lname string
                         }{
                             true,
-                            first_name,
-                            last_name,
+                            r.FormValue("lname"),
+                            r.FormValue("lname"),
                             }) 
     }
 }

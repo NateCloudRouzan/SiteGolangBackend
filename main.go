@@ -207,14 +207,15 @@ func form3Handler(w http.ResponseWriter, r *http.Request){
 func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
     if r.Method != http.MethodGet {
-        fmt.Fprint(w, r.Method)
-        //tmpl.Execute(w, nil)
+        //fmt.Fprint(w, r.Method)
+        tmpl.Execute(w, nil)
         return
     }
     
+    fmt.Fprint(w, r.Method)
 
     
-    c := LoginInfo{
+/*    c := LoginInfo{
         Success: true, 
         Fname: r.FormValue("photo"), 
         Lname: "Rouzan",
@@ -227,6 +228,7 @@ func form_3(w http.ResponseWriter, r *http.Request){
     }
     
     tmpl.Execute(w, c)   
+*/
 }
 
 func studentSealHandler(w http.ResponseWriter, r *http.Request){

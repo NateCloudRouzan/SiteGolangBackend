@@ -154,7 +154,7 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
     }
 
     first_name := r.FormValue("fname")
-    last_name r.FormValue("lname")
+    last_name := r.FormValue("lname")
     password := r.FormValue("pword")
 
     

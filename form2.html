@@ -1,11 +1,9 @@
 <html><body>
 {{if .Success}}
-	<h1>Hey friend >{{.Fname}} {{.Lname}}</h1>
+	<h1>Hello, {{.Fname}} {{.Lname}}!</h1>
     {{if .Authorized}}
        <img src="http://cloudrouzan.com/media/img/failure.jpeg" alt="Failure" width="250" height="350">
     {{end}}
-    <h2>{{.Fname}}</h2>
-    <h3>Welcome!</h3>
 {{else}}
 	<h1>Login</h1>
 	<form method="POST">

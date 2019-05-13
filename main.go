@@ -155,7 +155,30 @@ func form1Handler(w http.ResponseWriter, r *http.Request){
 
 
 func handlingForm(w http.ResponseWriter, r *http.Request){
-    tmpl := template.Must(template.ParseFiles("form1.html"))
+    tmpl := template.Must(template.ParseFiles("form2.html"))
+    if r.Method != http.MethodPost {
+			tmpl.Execute(w, nil)
+			return
+    }
+
+    details := ContactDetails{
+        Email:   r.FormValue("email"),
+        Subject: r.FormValue("subject"),
+        Message: r.FormValue("message"),
+    }
+
+    // do something with details
+    _ = details
+
+    tmpl.Execute(w, struct{ Success bool }{true})    
+}
+
+func form2Handler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "form2.html")
+}
+
+func form_2(w http.ResponseWriter, r *http.Request){
+       tmpl := template.Must(template.ParseFiles("form2.html"))
 //    if r.Method != http.MethodPost {
 //			tmpl.Execute(w, nil)
 //			return
@@ -173,30 +196,7 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
         Lname: r.FormValue("lname"),
     }
     
-    tmpl.Execute(w, c)    
-}
-
-func form2Handler(w http.ResponseWriter, r *http.Request){
-    http.ServeFile(w , r , "form2.html")
-}
-
-func form_2(w http.ResponseWriter, r *http.Request){
-    tmpl := template.Must(template.ParseFiles("form2.html"))
-    if r.Method != http.MethodPost {
-			tmpl.Execute(w, nil)
-			return
-    }
-
-    details := ContactDetails{
-        Email:   r.FormValue("email"),
-        Subject: r.FormValue("subject"),
-        Message: r.FormValue("message"),
-    }
-
-    // do something with details
-    _ = details
-
-    tmpl.Execute(w, struct{ Success bool }{true})    
+    tmpl.Execute(w, c)   
 }
 
 func studentSealHandler(w http.ResponseWriter, r *http.Request){

@@ -159,9 +159,25 @@ func handlingForm(w http.ResponseWriter, r *http.Request){
 
     
     if first_name == "Nate" && last_name == "Cloud" && password == "bannana"{
-        tmpl.Execute(w, struct{ Success bool }{true})    
+        tmpl.Execute(w, struct{ 
+                            Success bool,
+                            Fname string,
+                            Lname string
+                        }{
+                            true,
+                            first_name,
+                            last_name,
+                            })    
     }else{
-        tmpl.Execute(w, struct{ Success bool }{false})    
+        tmpl.Execute(w, struct{ 
+                            Success bool,
+                            Fname string,
+                            Lname string
+                        }{
+                            true,
+                            first_name,
+                            last_name,
+                            }) 
     }
 }
 

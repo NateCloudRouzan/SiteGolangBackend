@@ -207,8 +207,9 @@ func form3Handler(w http.ResponseWriter, r *http.Request){
 func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
     if r.Method != http.MethodGet {
-			tmpl.Execute(w, nil)
-			return
+        fmt.Fprint(w, r.Method)
+        //tmpl.Execute(w, nil)
+        return
     }
     
 

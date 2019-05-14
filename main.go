@@ -208,7 +208,7 @@ func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
 //    if r.Method == "GET" {
         //fmt.Fprint(w, r.Method)
-        tmpl.Execute(w, nil)
+        tmpl.Execute(w, r.URL.Path)
         return
 //    }
     

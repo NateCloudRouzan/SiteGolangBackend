@@ -1,16 +1,9 @@
 <html><body>
-{{if .Success}}
-	<h1>Hello, {{.Fname}} {{.Lname}}!</h1>
-    {{if .Authorized}}
-       <img src="http://cloudrouzan.com/media/img/failure.jpeg" alt="Failure" width="250" height="350">
-    {{end}}
-{{else}}
-	<h1>Login</h1>
-    <h3>if first name nate you will see a surprise</h3>
+    <h1>Login</h1>
+    <h3>URL: {{.}}</h3>
 	<form method="GET">
 		<label>First Name:</label><br />
 		<input type="text" name="photo"><br />
 		<input type="submit">
 	</form>
-{{end}}
 </body></html>

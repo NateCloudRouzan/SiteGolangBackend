@@ -212,6 +212,10 @@ func form_3(w http.ResponseWriter, r *http.Request){
         return
 //    }
     
+    if r.URL.Path != "/third_form"{
+        fmt.Fprint(w, r.URL.Path)
+    }
+    
 //    fmt.Fprint(w, r.Method)
 
     

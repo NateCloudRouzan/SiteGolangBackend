@@ -208,13 +208,11 @@ func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
 //    if r.Method == "GET" {
         //fmt.Fprint(w, r.Method)
-        tmpl.Execute(w, r.FormValue("photo"))
+        resp, err := http.Get("http://cloudrouzan.com/media/img/failure.jpeg")
+        tmpl.Execute(w, r.FormValue("photo"), resp, err)
         return
 //    }
     
-    if r.URL.Path != "/third_form"{
-        fmt.Fprint(w, r.URL.Path)
-    }
     
 //    fmt.Fprint(w, r.Method)
 

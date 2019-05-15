@@ -206,31 +206,7 @@ func form3Handler(w http.ResponseWriter, r *http.Request){
 
 func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
-//    if r.Method == "GET" {
-        //fmt.Fprint(w, r.Method)
-
-        tmpl.Execute(w, r.FormValue("photo"))        
-        return
-//    }
-    
-    
-//    fmt.Fprint(w, r.Method)
-
-    
-/*    c := LoginInfo{
-        Success: true, 
-        Fname: r.FormValue("photo"), 
-        Lname: "Rouzan",
-        Pword: "HAHA",
-    }
-    
-    if c.Fname == "failure"{
-        fmt.Fprint(w, "Processed")
-        return
-    }
-    
-    tmpl.Execute(w, c)   
-*/
+    tmpl.Execute(w, r.FormValue("photo"))        
 }
 
 func form_3_redir(w http.ResponseWriter, r *http.Request){
@@ -244,6 +220,41 @@ func studentSealHandler(w http.ResponseWriter, r *http.Request){
 func RedirectHandler(w http.ResponseWriter, r *http.Request){
     http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
 }
+
+func FileUploadHandler(w http.ResponseWriter, req *http.Request) {
+
+	var s string
+	if req.Method == http.MethodPost {
+
+		// open
+		f, h, err := req.FormFile("q")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer f.Close()
+
+		// for your information
+//		fmt.Println("\nfile:", f, "\nheader:", h, "\nerr", err)
+
+		// read
+		bs, err := ioutil.ReadAll(f)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		s = string(bs)
+	}
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	io.WriteString(w, `
+	<form method="POST" enctype="multipart/form-data">
+	<input type="file" name="q">
+	<input type="submit">
+	</form>
+	<br>`+s)
+}
+
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
@@ -286,6 +297,8 @@ func init() {
     http.HandleFunc("/third_form/", form_3_redir)
 
     http.HandleFunc("/redirect", RedirectHandler)
+    http.HandleFunc("/fileUpload", FileUploadHandler)
+
 
     http.HandleFunc("/smth/", smthHandler)
     

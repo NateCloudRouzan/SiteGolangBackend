@@ -6,6 +6,8 @@ import (
     "html/template"
 //    "io"
 	"io/ioutil"
+    "os"
+	"path/filepath"
 )
 
 type Todo struct {
@@ -257,15 +259,49 @@ func FileUploadHandler(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
     
     tmpl.Execute(w, s)
-    
-//	io.WriteString(w, `
-//	<form method="POST" enctype="multipart/form-data">
-//	<input type="file" name="q">
-//	<input type="submit">
-//	</form>
-//	<br>`+s)
 }
 
+func SaveOnServer(w http.ResponseWriter, req *http.Request) {
+
+	var s string
+    tmpl := template.Must(template.ParseFiles("file_submit_template.html"))
+    
+	if req.Method == http.MethodPost {
+
+		// open
+		f, h, err := req.FormFile("q")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer f.Close()
+
+		// read
+		bs, err := ioutil.ReadAll(f)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		s = string(bs)
+
+		// store on server
+		dst, err := os.Create(filepath.Join("./user/", h.Filename))
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		defer dst.Close()
+
+		_, err = dst.Write(bs)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	tpl.ExecuteTemplate(w, s)
+}
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
@@ -311,6 +347,7 @@ func init() {
     
     http.HandleFunc("/file_submit_template.html", FileUploadTemplate)
     http.HandleFunc("/fileUpload", FileUploadHandler)
+    http.HandleFunc("/fileUpload2", SaveOnServer)
 
 
     http.HandleFunc("/smth/", smthHandler)

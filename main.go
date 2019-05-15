@@ -216,7 +216,7 @@ func form_3(w http.ResponseWriter, r *http.Request){
         //fmt.Fprint(w, r.Method)
         resp, err := http.Get("http://cloudrouzan.com/media/img/failure.jpeg")
         
-        a := {
+        a := form_3_data{
             FormVal: r.FormValue("photo"),
             Responce: resp,
             Err: err,

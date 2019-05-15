@@ -204,12 +204,25 @@ func form3Handler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "form3.html")
 }
 
+type form_3_data struct{
+    string FormVal
+    string Responce
+    string Err
+}
+
 func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
 //    if r.Method == "GET" {
         //fmt.Fprint(w, r.Method)
         resp, err := http.Get("http://cloudrouzan.com/media/img/failure.jpeg")
-        tmpl.Execute(w, r.FormValue("photo"), resp, err)
+        
+        a := {
+            FormVal: r.FormValue("photo"),
+            Responce: resp,
+            Err: err,
+        }
+    
+        tmpl.Execute(w, a)        
         return
 //    }
     

@@ -223,9 +223,15 @@ func RedirectHandler(w http.ResponseWriter, r *http.Request){
     http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
 }
 
+func FileUploadTemplate(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "file_submit_template.html")
+}
+
 func FileUploadHandler(w http.ResponseWriter, req *http.Request) {
 
 	var s string
+    tmpl := template.Must(template.ParseFiles("file_submit_template.html"))
+
 	if req.Method == http.MethodPost {
 
 		// open
@@ -249,12 +255,15 @@ func FileUploadHandler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	io.WriteString(w, `
-	<form method="POST" enctype="multipart/form-data">
-	<input type="file" name="q">
-	<input type="submit">
-	</form>
-	<br>`+s)
+    
+    tmpl.Execute(w, s)
+    
+//	io.WriteString(w, `
+//	<form method="POST" enctype="multipart/form-data">
+//	<input type="file" name="q">
+//	<input type="submit">
+//	</form>
+//	<br>`+s)
 }
 
 
@@ -299,6 +308,8 @@ func init() {
     http.HandleFunc("/third_form/", form_3_redir)
 
     http.HandleFunc("/redirect", RedirectHandler)
+    
+    http.HandleFunc("/file_submit_template.html", FileUploadTemplate)
     http.HandleFunc("/fileUpload", FileUploadHandler)
 
 

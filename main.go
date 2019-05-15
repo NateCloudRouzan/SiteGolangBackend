@@ -32,7 +32,7 @@ type LoginInfo struct {
 
 type form_3_data struct{
     FormVal string 
-//    Responce string
+    RandomA string
     Err error
 }
 
@@ -218,7 +218,7 @@ func form_3(w http.ResponseWriter, r *http.Request){
         
         a := form_3_data{
             FormVal: r.FormValue("photo"),
-  //          Responce: resp,
+            RandomA: `<img src="./media/img/failure.jpeg" alt="Failure" width="250" height="350">`,
             Err: err,
         }
     

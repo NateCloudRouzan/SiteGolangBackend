@@ -32,8 +32,8 @@ type LoginInfo struct {
 
 type form_3_data struct{
     FormVal string 
-    Responce string
-    Err string
+//    Responce string
+    Err error
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -214,11 +214,11 @@ func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
 //    if r.Method == "GET" {
         //fmt.Fprint(w, r.Method)
-        resp, err := http.Get("http://cloudrouzan.com/media/img/failure.jpeg")
+        _, err := http.Get("http://cloudrouzan.com/media/img/failure.jpeg")
         
         a := form_3_data{
             FormVal: r.FormValue("photo"),
-            Responce: resp,
+  //          Responce: resp,
             Err: err,
         }
     

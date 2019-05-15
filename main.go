@@ -4,8 +4,8 @@ import (
 	"net/http"
     "fmt"
     "html/template"
-    "io"
-	"io/ioutil"
+//    "io"
+//	"io/ioutil"
 )
 
 type Todo struct {

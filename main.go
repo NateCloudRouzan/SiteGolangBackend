@@ -30,6 +30,12 @@ type LoginInfo struct {
     Pword string
 }
 
+type form_3_data struct{
+    string FormVal
+    string Responce
+    string Err
+}
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/" && r.URL.Path != "/index.html" {
         errorHandler(w, r, http.StatusNotFound)
@@ -202,12 +208,6 @@ func form_2(w http.ResponseWriter, r *http.Request){
 
 func form3Handler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "form3.html")
-}
-
-type form_3_data struct{
-    string FormVal
-    string Responce
-    string Err
 }
 
 func form_3(w http.ResponseWriter, r *http.Request){

@@ -229,7 +229,7 @@ func FileUploadHandler(w http.ResponseWriter, req *http.Request) {
 	if req.Method == http.MethodPost {
 
 		// open
-		f, h, err := req.FormFile("q")
+		f, _, err := req.FormFile("q")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

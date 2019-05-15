@@ -300,7 +300,7 @@ func SaveOnServer(w http.ResponseWriter, req *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	tmpl.ExecuteTemplate(w, s)
+	tmpl.Execute(w, s)
 }
 
 func init() {

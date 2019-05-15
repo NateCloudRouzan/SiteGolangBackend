@@ -30,12 +30,6 @@ type LoginInfo struct {
     Pword string
 }
 
-type form_3_data struct{
-    FormVal string 
-    RandomA string
-    Err error
-}
-
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/" && r.URL.Path != "/index.html" {
         errorHandler(w, r, http.StatusNotFound)
@@ -214,15 +208,8 @@ func form_3(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("form3.html"))
 //    if r.Method == "GET" {
         //fmt.Fprint(w, r.Method)
-        _, err := http.Get("http://cloudrouzan.com/media/img/failure.jpeg")
-        
-        a := form_3_data{
-            FormVal: r.FormValue("photo"),
-            RandomA: `<img src="./media/img/failure.jpeg" alt="Failure" width="250" height="350">`,
-            Err: err,
-        }
-    
-        tmpl.Execute(w, a)        
+
+        tmpl.Execute(w, r.FormValue("photo"))        
         return
 //    }
     

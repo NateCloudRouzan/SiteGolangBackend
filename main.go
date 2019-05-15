@@ -31,9 +31,9 @@ type LoginInfo struct {
 }
 
 type form_3_data struct{
-    string FormVal
-    string Responce
-    string Err
+    FormVal string 
+    Responce string
+    Err string
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {

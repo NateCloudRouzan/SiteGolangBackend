@@ -241,6 +241,10 @@ func studentSealHandler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "StudentSeal.html")
 }
 
+func RedirectHandler(w http.ResponseWriter, r *http.Request){
+    http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
+}
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -281,7 +285,7 @@ func init() {
     http.HandleFunc("/third_form", form_3)
     http.HandleFunc("/third_form/", form_3_redir)
 
-    
+    http.HandleFunc("/redirect", RedirectHandler)
 
     http.HandleFunc("/smth/", smthHandler)
     

@@ -234,7 +234,7 @@ func Redirect301Handler(w http.ResponseWriter, r *http.Request){
 func Redirect303Handler(w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("redirect_template.html"))
 
-    tmpl.ExecuteTemplate(w, nil)
+    tmpl.Execute(w, nil)
     //http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
 }
 

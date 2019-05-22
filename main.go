@@ -359,7 +359,7 @@ func cookieCounter(w http.ResponseWriter, req *http.Request){
 
 	http.SetCookie(w, cookie)
 
-	io.WriteString(w, cookie.Value)
+	fmt.Fprint(w, cookie.Value)
 }
 
 func init() {

@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
     "os"
 	"path/filepath"
+    "time"
 )
 
 type Todo struct {
@@ -221,7 +222,9 @@ func studentSealHandler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "StudentSeal.html")
 }
 
-func RedirectHandler(w http.ResponseWriter, r *http.Request){
+func Redirect301Handler(w http.ResponseWriter, r *http.Request){
+    fmt.Fprintf(w, "Should see this redirect the first time")
+    time.Sleep(10 * time.Second)
     http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
 }
 
@@ -343,7 +346,7 @@ func init() {
     http.HandleFunc("/third_form", form_3)
     http.HandleFunc("/third_form/", form_3_redir)
 
-    http.HandleFunc("/redirect", RedirectHandler)
+    http.HandleFunc("/redirect301", Redirect301Handler)
     
     http.HandleFunc("/file_submit_template.html", FileUploadTemplate)
     http.HandleFunc("/fileUpload", FileUploadHandler)

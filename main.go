@@ -358,8 +358,8 @@ func cookieCounter(w http.ResponseWriter, req *http.Request){
 	cookie.Value = strconv.Itoa(count)
 
 	http.SetCookie(w, cookie)
-
-	fmt.Fprint(w, cookie.Value)
+    a := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieIncrement';">Cookie Incrementer</button>` + cookie.Value
+	fmt.Fprint(w, a)
 }
 
 func init() {

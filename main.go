@@ -381,6 +381,8 @@ func cookieThrottle(w http.ResponseWriter, req *http.Request){
 			Path: "/",
             MaxAge: 7,
 		}
+        http.SetCookie(w, timer)
+
        //Increment cookie if hold isnt there
        count, _ := strconv.Atoi(cookie.Value)
 	   count++

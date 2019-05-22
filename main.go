@@ -411,6 +411,11 @@ func cookieThrottle(w http.ResponseWriter, req *http.Request){
     fmt.Fprint(w, q)
 }
 
+func seeUUID(w http.ResponseWriter, req *http.Request){
+    cookie, _ := req.Cookie("session")
+    a := `Your UUID is: ` + cookie.Value
+    fmt.Fprint(w, a)
+}
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -463,7 +468,8 @@ func init() {
     http.HandleFunc("/fileUpload2", SaveOnServer)
 
     http.HandleFunc("/cookieIncrement", cookieCounter)
-        http.HandleFunc("/cookieThrottle", cookieThrottle)
+    http.HandleFunc("/cookieThrottle", cookieThrottle)
+    http.HandleFunc("/cookieUUID", seeUUID)
 
 
     http.HandleFunc("/smth/", smthHandler)

@@ -381,15 +381,11 @@ func init() {
     http.HandleFunc("/third_form/", form_3_redir)
 
     http.HandleFunc("/redirect301", Redirect301Handler)
-    
     http.HandleFunc("/redirect303", Redirect303Handler)
     http.HandleFunc("/Redirect_303", Redirect303)
     http.HandleFunc("/redirect307", Redirect307Handler)
     http.HandleFunc("/Redirect_307", Redirect307)
-    
     http.HandleFunc("/redir_end", ShowMethod)
-
-//    http.HandleFunc("/redirect_template", RedirectTempHandler)
     
     http.HandleFunc("/file_submit_template.html", FileUploadTemplate)
     http.HandleFunc("/fileUpload", FileUploadHandler)

@@ -232,10 +232,31 @@ func Redirect301Handler(w http.ResponseWriter, r *http.Request){
 }
 
 func Redirect303Handler(w http.ResponseWriter, r *http.Request){
-    tmpl := template.Must(template.ParseFiles("redirect_template.html"))
+    fmt.Fprint(w, `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>This data will be submitted as a POST method</h1>
+<form method="POST" action="/bar">
+    <input type="text" name="fname">
+    <input type="submit">
+</form>
 
-    tmpl.Execute(w, nil)
+</body>
+</html>`)
+    
+    //tmpl := template.Must(template.ParseFiles("redirect_template.html"))
+    //tmpl.Execute(w, nil)
+    
     //http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
+}
+
+func Redirect303(w http.ResponseWriter, r *http.Request){
+    http.Redirect(w, req, "/Redirect_303_end", http.StatusTemporaryRedirect)
+
 }
 
 func FileUploadTemplate(w http.ResponseWriter, r *http.Request){
@@ -357,8 +378,10 @@ func init() {
     http.HandleFunc("/third_form/", form_3_redir)
 
     http.HandleFunc("/redirect301", Redirect301Handler)
+    
     http.HandleFunc("/redirect303", Redirect303Handler)
-    http.HandleFunc("/redirect_template", RedirectTempHandler)
+  
+//    http.HandleFunc("/redirect_template", RedirectTempHandler)
     
     http.HandleFunc("/file_submit_template.html", FileUploadTemplate)
     http.HandleFunc("/fileUpload", FileUploadHandler)

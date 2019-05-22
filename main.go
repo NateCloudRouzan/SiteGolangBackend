@@ -255,8 +255,7 @@ func Redirect303Handler(w http.ResponseWriter, r *http.Request){
 }
 
 func Redirect303(w http.ResponseWriter, r *http.Request){
-    http.Redirect(w, req, "/Redirect_303_end", http.StatusTemporaryRedirect)
-
+    http.Redirect(w, r, "/Redirect_303_end", http.StatusTemporaryRedirect)
 }
 
 func FileUploadTemplate(w http.ResponseWriter, r *http.Request){

@@ -357,9 +357,9 @@ func cookieCounter(w http.ResponseWriter, req *http.Request){
 	count++
 	cookie.Value = strconv.Itoa(count)
 
-	http.SetCookie(req, cookie)
+	http.SetCookie(w, cookie)
 
-	io.WriteString(req, cookie.Value)
+	io.WriteString(w, cookie.Value)
 }
 
 func init() {

@@ -353,10 +353,7 @@ func cookieCounter(w http.ResponseWriter, req *http.Request){
 		}
 	}
 
-	count, err := strconv.Atoi(cookie.Value)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	count, _ := strconv.Atoi(cookie.Value)
 	count++
 	cookie.Value = strconv.Itoa(count)
 

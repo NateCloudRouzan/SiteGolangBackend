@@ -9,6 +9,7 @@ import (
     "os"
 	"path/filepath"
     "time"
+    "strconv"
 )
 
 type Todo struct {
@@ -340,6 +341,30 @@ func SaveOnServer(w http.ResponseWriter, req *http.Request) {
 	tmpl.Execute(w, s)
 }
 
+
+func cookieCounter(w http.ResponseWriter, req *http.Request){
+    cookie, err := req.Cookie("my-cookie")
+
+	if err == http.ErrNoCookie {
+		cookie = &http.Cookie{
+			Name:  "my-cookie",
+			Value: "0",
+			Path: "/",
+		}
+	}
+
+	count, err := strconv.Atoi(cookie.Value)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	count++
+	cookie.Value = strconv.Itoa(count)
+
+	http.SetCookie(req, cookie)
+
+	io.WriteString(req, cookie.Value)
+}
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -391,6 +416,7 @@ func init() {
     http.HandleFunc("/fileUpload", FileUploadHandler)
     http.HandleFunc("/fileUpload2", SaveOnServer)
 
+    http.HandleFunc("/cookieIncrement", cookieCounter)
 
     http.HandleFunc("/smth/", smthHandler)
     

@@ -362,6 +362,39 @@ func cookieCounter(w http.ResponseWriter, req *http.Request){
 	fmt.Fprint(w, a)
 }
 
+func cookieThrottle(w http.ResponseWriter, req *http.Request){
+    cookie, err := req.Cookie("num-visits")
+    timer, not_there := req.Cookie("hold-cookie")
+
+	if err == http.ErrNoCookie {
+		cookie = &http.Cookie{
+			Name:  "num-visits",
+			Value: "0",
+			Path: "/",
+		}
+	}
+
+    if not_there == http.ErrNoCookie {
+		timer = &http.Cookie{
+			Name:  "hold-cookie",
+			Value: "Hold",
+			Path: "/",
+            MaxAge: 7,
+		}
+       //Increment cookie if hold isnt there
+       count, _ := strconv.Atoi(cookie.Value)
+	   count++
+	   cookie.Value = strconv.Itoa(count)
+       http.SetCookie(w, cookie)
+       a := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieThrottle';">Cookie Incrementer</button>` + cookie.Value
+	   fmt.Fprint(w, a)
+       return
+	}
+    
+    q := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieThrottle';">Cookie Incrementer</button>` + cookie.Value ` Hold On`
+    fmt.Fprint(w, q)
+}
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -414,6 +447,8 @@ func init() {
     http.HandleFunc("/fileUpload2", SaveOnServer)
 
     http.HandleFunc("/cookieIncrement", cookieCounter)
+        http.HandleFunc("/cookieThrottle", cookieThrottle)
+
 
     http.HandleFunc("/smth/", smthHandler)
     

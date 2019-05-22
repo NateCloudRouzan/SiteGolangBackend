@@ -10,6 +10,7 @@ import (
 	"path/filepath"
     "time"
     "strconv"
+    "github.com/satori/go.uuid"
 )
 
 type Todo struct {
@@ -41,6 +42,20 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
         errorHandler(w, r, http.StatusNotFound)
         return
     }
+    cookie, err := req.Cookie("session")
+	if err != nil {
+		id := uuid.NewV4()
+		cookie = &http.Cookie{
+			Name:  "session",
+			Value: id.String(),
+			// Secure: true,
+			HttpOnly: true,
+			Path:     "/",
+		}
+		http.SetCookie(w, cookie)
+	}
+	fmt.Println(cookie)
+    
     http.ServeFile(w , r , "index.html")
 //    fmt.Fprint(w, "welcome home")
 }

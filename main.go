@@ -391,7 +391,7 @@ func cookieThrottle(w http.ResponseWriter, req *http.Request){
        return
 	}
     
-    q := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieThrottle';">Cookie Incrementer</button>` + cookie.Value + ` Hold On`
+    q := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieThrottle';">Cookie Incrementer</button>` + cookie.Value + " " + timer.Value
     fmt.Fprint(w, q)
 }
 

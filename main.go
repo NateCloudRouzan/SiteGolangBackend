@@ -232,31 +232,32 @@ func Redirect301Handler(w http.ResponseWriter, r *http.Request){
 }
 
 func Redirect303Handler(w http.ResponseWriter, r *http.Request){
-    fmt.Fprint(w, `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    fmt.Fprint(w, `<!DOCTYPE html> <html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body>
 <h1>This data will be submitted as a POST method</h1>
 <form method="POST" action="/Redirect_303">
     <input type="text" name="fname">
     <input type="submit">
-</form>
-
-</body>
-</html>`)
-    
-    //tmpl := template.Must(template.ParseFiles("redirect_template.html"))
-    //tmpl.Execute(w, nil)
-    
-    //http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
+</form></body></html>`)
 }
 
 func Redirect303(w http.ResponseWriter, r *http.Request){
+    http.Redirect(w, r, "/redir_end", http.StatusSeeOther)
+}
+
+func Redirect307Handler(w http.ResponseWriter, r *http.Request){
+    fmt.Fprint(w, `<!DOCTYPE html> <html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body>
+<h1>This data will be submitted as a POST method</h1>
+<form method="POST" action="/Redirect_307">
+    <input type="text" name="fname">
+    <input type="submit">
+</form></body></html>`)
+}
+
+func Redirect307(w http.ResponseWriter, r *http.Request){
     http.Redirect(w, r, "/redir_end", http.StatusTemporaryRedirect)
 }
+
+
 func ShowMethod(w http.ResponseWriter, r *http.Request){
     a := "Original method POST, Now the method is: " + r.Method
     fmt.Fprint(w, a)
@@ -383,6 +384,8 @@ func init() {
     
     http.HandleFunc("/redirect303", Redirect303Handler)
     http.HandleFunc("/Redirect_303", Redirect303)
+    http.HandleFunc("/redirect307", Redirect307Handler)
+    http.HandleFunc("/Redirect_307", Redirect307)
     
     http.HandleFunc("/redir_end", ShowMethod)
 

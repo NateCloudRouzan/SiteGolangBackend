@@ -222,9 +222,20 @@ func studentSealHandler(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "StudentSeal.html")
 }
 
+func RedirectTempHandler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w , r , "redirect_template.html")
+}
+
 func Redirect301Handler(w http.ResponseWriter, r *http.Request){
     time.Sleep(10 * time.Second)
     http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
+}
+
+func Redirect303Handler(w http.ResponseWriter, r *http.Request){
+    tmpl := template.Must(template.ParseFiles("redirect_template.html"))
+
+    tmpl.ExecuteTemplate(w, nil)
+    //http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
 }
 
 func FileUploadTemplate(w http.ResponseWriter, r *http.Request){
@@ -346,6 +357,8 @@ func init() {
     http.HandleFunc("/third_form/", form_3_redir)
 
     http.HandleFunc("/redirect301", Redirect301Handler)
+    
+    http.HandleFunc("/redirect_template", RedirectTempHandler)
     
     http.HandleFunc("/file_submit_template.html", FileUploadTemplate)
     http.HandleFunc("/fileUpload", FileUploadHandler)

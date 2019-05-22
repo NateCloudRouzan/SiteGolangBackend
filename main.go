@@ -258,8 +258,8 @@ func Redirect303(w http.ResponseWriter, r *http.Request){
     http.Redirect(w, r, "/redir_end", http.StatusTemporaryRedirect)
 }
 func ShowMethod(w http.ResponseWriter, r *http.Request){
-//    a := "Original method POST, Now the method is: " 
-    fmt.FPrint(w, r.Method)
+    a := "Original method POST, Now the method is: " + r.Method
+    fmt.Fprint(w, a)
 }
 func FileUploadTemplate(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "file_submit_template.html")

@@ -384,7 +384,7 @@ func init() {
     http.HandleFunc("/redirect303", Redirect303Handler)
     http.HandleFunc("/Redirect_303", Redirect303)
     
-    http.HandleFunc("redir_end", ShowMethod)
+    http.HandleFunc("/redir_end", ShowMethod)
 
 //    http.HandleFunc("/redirect_template", RedirectTempHandler)
     

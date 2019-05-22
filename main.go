@@ -223,7 +223,6 @@ func studentSealHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func Redirect301Handler(w http.ResponseWriter, r *http.Request){
-    fmt.Fprintf(w, "Should see this redirect the first time")
     time.Sleep(10 * time.Second)
     http.Redirect(w, r, "https://www.youtube.com/watch?v=TOUrLn1FFCA", 301)
 }

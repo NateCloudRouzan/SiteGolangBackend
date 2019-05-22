@@ -240,7 +240,7 @@ func Redirect303Handler(w http.ResponseWriter, r *http.Request){
 </head>
 <body>
 <h1>This data will be submitted as a POST method</h1>
-<form method="POST" action="/bar">
+<form method="POST" action="/Redirect_303">
     <input type="text" name="fname">
     <input type="submit">
 </form>
@@ -255,9 +255,12 @@ func Redirect303Handler(w http.ResponseWriter, r *http.Request){
 }
 
 func Redirect303(w http.ResponseWriter, r *http.Request){
-    http.Redirect(w, r, "/Redirect_303_end", http.StatusTemporaryRedirect)
+    http.Redirect(w, r, "/redir_end", http.StatusTemporaryRedirect)
 }
-
+func ShowMethod(w http.ResponseWriter, r *http.Request){
+    a := "Original method POST, Now the method is: " + req.Method
+    fmt.FPrintf(w, a)
+}
 func FileUploadTemplate(w http.ResponseWriter, r *http.Request){
     http.ServeFile(w , r , "file_submit_template.html")
 }
@@ -379,7 +382,10 @@ func init() {
     http.HandleFunc("/redirect301", Redirect301Handler)
     
     http.HandleFunc("/redirect303", Redirect303Handler)
-  
+    http.HandleFunc("/Redirect_303", Redirect303)
+    
+    http.HandleFunc("redir_end", ShowMethod)
+
 //    http.HandleFunc("/redirect_template", RedirectTempHandler)
     
     http.HandleFunc("/file_submit_template.html", FileUploadTemplate)

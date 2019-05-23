@@ -3,6 +3,7 @@ package main
 import (
     "html/template"
     "net/http"
+    "fmt"
 )
 
 type ContactDetails struct {

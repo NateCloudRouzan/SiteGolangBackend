@@ -7,7 +7,7 @@ import (
 
 func simpleTemplateString (w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("template_simple.html"))
-    tmpl.Execute(w, `From Main.go we doin it!`)
+    tmpl.Execute(w, `From template_code.go we doin it!`)
 }
 
 func simpleTemplateInt (w http.ResponseWriter, r *http.Request){

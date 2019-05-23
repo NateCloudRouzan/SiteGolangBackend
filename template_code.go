@@ -1,5 +1,10 @@
 package main
 
+import (
+	"net/http"
+    "html/template"
+)
+
 func simpleTemplateString (w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("template_simple.html"))
     tmpl.Execute(w, `From Main.go we doin it!`)

@@ -5,6 +5,17 @@ import (
     "html/template"
 )
 
+
+type Todo struct {
+	Title string
+	Done  bool
+}
+
+type TodoPageData struct {
+	PageTitle string
+	Todos     []Todo
+}
+
 func simpleTemplateString (w http.ResponseWriter, r *http.Request){
     tmpl := template.Must(template.ParseFiles("template_simple.html"))
     tmpl.Execute(w, `From template_code.go we doin it!`)

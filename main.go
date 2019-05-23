@@ -8,7 +8,6 @@ import (
     "os"
 	"path/filepath"
 //    "time"
-    "strconv"
     "github.com/satori/go.uuid"
 )
 
@@ -20,16 +19,6 @@ type User struct{
     birthYear int
     birthMonth int
     birthDay int
-}
-
-type Todo struct {
-	Title string
-	Done  bool
-}
-
-type TodoPageData struct {
-	PageTitle string
-	Todos     []Todo
 }
 
 type LoginInfo struct {
@@ -101,8 +90,6 @@ func errorPageHandler(w http.ResponseWriter, r *http.Request) {
 
 func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal for my webpages
     http.ServeFile(w , r , "UdemyHome.html")
-
-//    fmt.Fprint(w, "welcome home")
 }
 
 func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
@@ -194,62 +181,6 @@ func SaveOnServer(w http.ResponseWriter, req *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	tmpl.Execute(w, s)
-}
-
-
-func cookieCounter(w http.ResponseWriter, req *http.Request){
-    cookie, err := req.Cookie("my-cookie")
-
-	if err == http.ErrNoCookie {
-		cookie = &http.Cookie{
-			Name:  "my-cookie",
-			Value: "0",
-			Path: "/",
-		}
-	}
-
-	count, _ := strconv.Atoi(cookie.Value)
-	count++
-	cookie.Value = strconv.Itoa(count)
-
-	http.SetCookie(w, cookie)
-    a := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieIncrement';">Cookie Incrementer</button>` + cookie.Value
-	fmt.Fprint(w, a)
-}
-
-func cookieThrottle(w http.ResponseWriter, req *http.Request){
-    cookie, err := req.Cookie("num-visits")
-    timer, not_there := req.Cookie("hold-cookie")
-
-	if err == http.ErrNoCookie {
-		cookie = &http.Cookie{
-			Name:  "num-visits",
-			Value: "0",
-			Path: "/",
-		}
-	}
-
-    if not_there == http.ErrNoCookie {
-		timer = &http.Cookie{
-			Name:  "hold-cookie",
-			Value: "Hold",
-			Path: "/",
-            MaxAge: 7,
-		}
-        http.SetCookie(w, timer)
-
-       //Increment cookie if hold isnt there
-       count, _ := strconv.Atoi(cookie.Value)
-	   count++
-	   cookie.Value = strconv.Itoa(count)
-       http.SetCookie(w, cookie)
-       a := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieThrottle';">Cookie Incrementer</button>` + cookie.Value
-	   fmt.Fprint(w, a)
-       return
-	}
-    
-    q := `<button onclick="window.location.href = 'https://cloudrouzan.com/cookieThrottle';">Cookie Incrementer</button>` + cookie.Value + " " + timer.Value
-    fmt.Fprint(w, q)
 }
 
 func seeUUID(w http.ResponseWriter, req *http.Request){

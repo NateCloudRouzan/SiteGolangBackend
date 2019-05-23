@@ -2,7 +2,7 @@ package main
 
 import (
     "html/template"
-    "net/htttp"
+    "net/http"
 )
 
 func FileUploadTemplate(w http.ResponseWriter, r *http.Request){

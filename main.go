@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
     "fmt"
-//    "time"
     "github.com/satori/go.uuid"
 )
 
@@ -62,49 +61,12 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
     }
 }
 
-func handler(w http.ResponseWriter, r *http.Request){ 
-    fmt.Fprintf(w, "Path: %s, Length:", r.URL.Path[1:], len(r.URL.Path[1:]))
-}
-
-func projectHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "projects.html")
-}
-
-func mainCSSHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "main.css")
-}
-func plusCSSHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "mq_800-plus.css")
-}
-func resetCSSHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "mcleod-reset.css")
-}
-
-func errorPageHandler(w http.ResponseWriter, r *http.Request) {
-    http.ServeFile(w , r , "errorPage.css")
-}
-
-func udemyHandler(w http.ResponseWriter, r *http.Request) {//Should be a portal for my webpages
-    http.ServeFile(w , r , "UdemyHome.html")
-}
-
-func udemyProjectsHandler(w http.ResponseWriter, r *http.Request) { //Should be a repo of all of my projects
-
-}
-
-func iconHandler(w http.ResponseWriter, r *http.Request){
-    http.ServeFile(w , r , "cloudIcon.ico")
-}
-
-func studentSealHandler(w http.ResponseWriter, r *http.Request){
-    http.ServeFile(w , r , "StudentSeal.html")
-}
-
 func seeUUID(w http.ResponseWriter, req *http.Request){
     cookie, _ := req.Cookie("session")
     a := `Your UUID is: ` + cookie.Value
     fmt.Fprint(w, a)
 }
+
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     http.HandleFunc("/", homeHandler)
@@ -120,9 +82,7 @@ func init() {
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 
-    http.HandleFunc("/GolangPractice", udemyHandler)
- //   http.HandleFunc("/GolangPractice/", udemyProjectsHandler)
-    
+    http.HandleFunc("/GolangPractice", udemyHandler)    
     
     http.HandleFunc("/GolangPractice/string_template", simpleTemplateString)
     http.HandleFunc("/GolangPractice/int_template", simpleTemplateInt)

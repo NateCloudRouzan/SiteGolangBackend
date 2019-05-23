@@ -3,6 +3,9 @@ package main
 import (
     "html/template"
     "net/http"
+	"io/ioutil"
+    "os"
+	"path/filepath"
 )
 
 func FileUploadTemplate(w http.ResponseWriter, r *http.Request){

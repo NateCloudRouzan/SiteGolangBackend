@@ -3,10 +3,6 @@ package main
 import (
 	"net/http"
     "fmt"
-    "html/template"
-	"io/ioutil"
-    "os"
-	"path/filepath"
 //    "time"
     "github.com/satori/go.uuid"
 )

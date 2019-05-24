@@ -30,6 +30,15 @@ var admin User
 var session_map = make(map[string]string)
 var user_map = make(map[string]User)
 
+func SessionHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Current Sessions <br>")
+    
+    fmt.Fprint(w, session_map)
+    
+    
+}
+
+
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != http.MethodPost {
         fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body><h1>Signup</h1>
@@ -94,9 +103,26 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
     
-    //make sure data matches map
-    //Link session to username
-    //Go to account home page
+    
+    
+    if _, ok := user_map[r.FormValue("username")]; !ok { //reject if there is no username
+			http.Error(w, "Nobody with this username in the database", http.StatusForbidden)
+			return
+    }
+    
+    realPword := user_map[r.FormValue("username")].password //Users real password
+    bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//what the user types in
+    
+    if realPword != bs{
+        http.Error(w, "Nobody with this username in the database", http.StatusForbidden)
+        return
+    }
+
+    cookie, _ := req.Cookie("session")
+    
+    session_map[cookie.Value]=r.FormValue("username") //Link session to username
+    
+    http.Redirect(w, r, "/account_home", http.StatusSeeOther) //Go to account home page
     
 }
 
@@ -115,10 +141,12 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoggedInHome(w http.ResponseWriter, r *http.Request) {
-    //Grab cookie
-    //From there get username
+    cookie, _ := req.Cookie("session")//Grab cookie
+    usrnme := session_map[cookie.Value]//From there get username
     
-    //From username grab user
+    loggedInUser := user_map[usrnme]//From username grab user
+    
+    fmt.Fprint(w, "Hello" + loggedInUser.fname + "!")
     
     //Show Name username and email
     //Make a birthday countdown
@@ -168,6 +196,19 @@ func seeUUID(w http.ResponseWriter, req *http.Request){
 }
 
 func init() {
+    
+    
+    
+    
+    
+    
+    
+    //https://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_date_max_min
+    
+    
+    
+    
+    
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     
     bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
@@ -180,7 +221,7 @@ func init() {
     admin.birthMonth = 12
     admin.birthDay = 17
     user_map["nastynate"]=admin
-        
+
     http.HandleFunc("/", homeHandler)
     
     http.HandleFunc("/cloudIcon.ico", iconHandler)
@@ -188,6 +229,7 @@ func init() {
     http.HandleFunc("/projects.html", projectHandler)
     http.HandleFunc("/StudentSeal.html", studentSealHandler)
 
+    http.HandleFunc("/sessions", SessionHandler)
     http.HandleFunc("/signup", SignUpHandler)
     http.HandleFunc("/login", LoginHandler)
     http.HandleFunc("/logout", LogoutHandler)

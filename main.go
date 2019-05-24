@@ -174,12 +174,12 @@ func init() {
     
     admin.username = "nastynate"
     admin.password = bs
-//    admin.fname = "nate"
-//    admin.lname = "cloud"
-//    admin.email = "example@example.com" 
-//    admin.birthYear = 1994
-//    admin.birthMonth = 12
-//    admin.birthDay = 17
+    admin.fname = "nate"
+    admin.lname = "cloud"
+    admin.email = "example@example.com" 
+    admin.birthYear = 1994
+    admin.birthMonth = 12
+    admin.birthDay = 17
 //    user_map["nastynate"] = admin
         
     http.HandleFunc("/", homeHandler)

@@ -26,6 +26,9 @@ type LoginInfo struct {
     Pword string
 }
 
+var admin User
+var adminptr = &User
+
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != http.MethodPost {
         fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body><h1>Signup</h1>
@@ -53,9 +56,7 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
     
-    //Need to reject passwords if they dont match
-    //need to encrypt passwords
-    bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)
+    bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
 
     
     
@@ -72,6 +73,8 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     }
     
     fmt.Fprint(w, newUser)
+    fmt.Fprint(w, admin)
+
     //Grab cookie
     
     
@@ -142,6 +145,19 @@ func seeUUID(w http.ResponseWriter, req *http.Request){
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
+    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
+
+    admin.username = "nastynate"
+    admin.password = bs
+    admin.fname = "nate"
+    admin.lname = "cloud"
+    admin.email = "example@example.com" 
+    admin.birthYear = 1994
+    &admin.birthMonth = 12
+    &admin.birthDay = 17
+    
+    
+    
     http.HandleFunc("/", homeHandler)
     
     http.HandleFunc("/cloudIcon.ico", iconHandler)

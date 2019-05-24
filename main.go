@@ -116,7 +116,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     
     if ! (bytes.Equal(realPword, bs)){
         fmt.Fprint(w, "Wrong password dummy<br>")
-        fmt.Fprint(w, realPword+" <br>")
+        fmt.Fprint(w, realPword)
+        fmt.Fprint(w, " <br>")
         fmt.Fprint(w, bs)
         
 //        http.Error(w, "Wrong password dummy", http.StatusForbidden)

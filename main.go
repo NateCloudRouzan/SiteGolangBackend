@@ -114,8 +114,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     realPword := user_map[r.FormValue("username")].password //Users real password
     bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//what the user types in
     
-    if bytes.Equal(realPword, bs){
-        http.Error(w, "Nobody with this username in the database", http.StatusForbidden)
+    if ! (bytes.Equal(realPword, bs)){
+        http.Error(w, "Wrong password dummy", http.StatusForbidden)
         return
     }
 

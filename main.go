@@ -24,6 +24,41 @@ type LoginInfo struct {
     Pword string
 }
 
+func SignUpHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head>
+<body><h1>Signup</h1>
+<form method="POST" action="/account_home">
+    <input type="text" name="username">
+    <input type="text" name="fname">
+    <input type="text" name="lname">
+    <input type="text" name="email">
+    <input type="submit">
+</form></body>
+</html>`)
+    
+    //Create account 
+    //Link it to that session
+}
+
+func LoginHandler(w http.ResponseWriter, r *http.Request) {
+    //take in login info
+    //make sure data matches map
+    //Link session to username
+    
+}
+
+func LogoutHandler(w http.ResponseWriter, r *http.Request) {
+    //Delete session cookie 
+    //Remove
+}
+
+func LoggedInHome(w http.ResponseWriter, r *http.Request) {
+    //Show Name username and email
+    //Make a birthday countdown
+    //
+
+}
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/" && r.URL.Path != "/index.html" {
         errorHandler(w, r, http.StatusNotFound)
@@ -76,14 +111,18 @@ func init() {
     http.HandleFunc("/projects.html", projectHandler)
     http.HandleFunc("/StudentSeal.html", studentSealHandler)
 
+    http.HandleFunc("/signup", SignUpHandler)
+    http.HandleFunc("/login", LoginHandler)
+    http.HandleFunc("/logout", LogoutHandler)
+    http.HandleFunc("/account_home", LoggedInHome)
     
     http.HandleFunc("/main.css", mainCSSHandler)
     http.HandleFunc("/mq_800-plus.css", plusCSSHandler)
     http.HandleFunc("/mcleod-reset.css", resetCSSHandler)
     http.Handle("/media/img/", http.StripPrefix("/media/img/", http.FileServer(http.Dir("./media/img/"))))
 
-    http.HandleFunc("/GolangPractice", udemyHandler)    
     
+    http.HandleFunc("/GolangPractice", udemyHandler)    
     http.HandleFunc("/GolangPractice/string_template", simpleTemplateString)
     http.HandleFunc("/GolangPractice/int_template", simpleTemplateInt)
     http.HandleFunc("/GolangPractice/slice_template", templateslice)

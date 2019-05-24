@@ -93,7 +93,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
-    c, err := req.Cookie("session")
+    c, err := r.Cookie("session")
 	
     if err != nil {
 		http.Redirect(w, r, "/set", http.StatusSeeOther)

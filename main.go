@@ -27,18 +27,22 @@ type LoginInfo struct {
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head>
 <body><h1>Signup</h1>
-<form method="POST" action="/account_home">
+<form method="POST" action="/signup">
     Username<br><input type="text" name="username" value="NastyNate"> <br>
     First Name<br><input type="text" name="fname" value="Nate"> <br>
-    Last Name<br><input type="text" name="lname" value="Cloud">
-    Email<br><input type="text" name="email" value="example@example.com">
+    Last Name<br><input type="text" name="lname" value="Cloud"><br>
+    Email<br><input type="text" name="email" value="example@example.com"><br>
     <label for="pass">Password (8 characters minimum):</label>
-    <input type="password" id="pass" name="password" minlength="8" required>
+    <input type="password" id="pass" name="password" minlength="8" required><br>
     <label for="pass">Re-type password:</label>
-    <input type="password" id="pass" name="password" minlength="8" required>
+    <input type="password" id="pass" name="password" minlength="8" required><br>
     <input type="submit" value="Sign Up!">
 </form></body>
 </html>`)
+    if r.Method != http.MethodPost {
+        fmt.Fprint(w, "In post")
+        return
+    }
     
     //Create account 
     //Link it to that session

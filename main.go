@@ -118,7 +118,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    cookie, _ := req.Cookie("session")
+    cookie, _ := r.Cookie("session")
     
     session_map[cookie.Value]=r.FormValue("username") //Link session to username
     
@@ -141,7 +141,7 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoggedInHome(w http.ResponseWriter, r *http.Request) {
-    cookie, _ := req.Cookie("session")//Grab cookie
+    cookie, _ := r.Cookie("session")//Grab cookie
     usrnme := session_map[cookie.Value]//From there get username
     
     loggedInUser := user_map[usrnme]//From username grab user

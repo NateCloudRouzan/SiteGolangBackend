@@ -158,10 +158,10 @@ func seeUUID(w http.ResponseWriter, req *http.Request){
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
-    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
+//    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
 
     admin.username = "nastynate"
-    admin.password = bs
+    admin.password = []byte("password")
     admin.fname = "nate"
     admin.lname = "cloud"
     admin.email = "example@example.com" 

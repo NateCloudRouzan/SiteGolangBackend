@@ -25,6 +25,11 @@ type LoginInfo struct {
 }
 
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method != http.MethodPost {
+        fmt.Fprint(w, "In post")
+        return
+    }
+    
     fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head>
 <body><h1>Signup</h1>
 <form method="POST" action="/signup">
@@ -39,10 +44,7 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     <input type="submit" value="Sign Up!">
 </form></body>
 </html>`)
-    if r.Method != http.MethodPost {
-        fmt.Fprint(w, "In post")
-        return
-    }
+
     
     //Create account 
     //Link it to that session

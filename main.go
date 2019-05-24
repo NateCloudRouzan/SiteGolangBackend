@@ -27,7 +27,6 @@ type LoginInfo struct {
 }
 
 var admin User
-
 var session_map map[string]string
 var user_map map[string]User
 
@@ -159,7 +158,7 @@ func seeUUID(w http.ResponseWriter, req *http.Request){
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
 //    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
-
+/*
     admin.username = "nastynate"
  //   admin.password = []byte("password")
     admin.fname = "nate"
@@ -169,7 +168,7 @@ func init() {
     admin.birthMonth = 12
     admin.birthDay = 17
     user_map ["nastynate"] = admin
-        
+*/        
     http.HandleFunc("/", homeHandler)
     
     http.HandleFunc("/cloudIcon.ico", iconHandler)

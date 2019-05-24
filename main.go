@@ -27,7 +27,7 @@ type LoginInfo struct {
 }
 
 var admin User
-var adminptr = &User
+//var adminptr = &User
 
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != http.MethodPost {

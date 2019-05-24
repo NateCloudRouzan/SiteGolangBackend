@@ -40,12 +40,23 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
     
-    fmt.Fprint(w, r.FormValue("fname"))
-    fmt.Fprint(w, r.FormValue("email"))
-
-
+    //Need to reject passwords if they dont match
+    //need to encrypt passwords
     
-    //Create account 
+    newUser := User{ //Create account
+        username: r.FormValue("username"),
+        fname: r.FormValue("fname"),
+        lname: r.FormValue("lname"),
+        email: r.FormValue("email"),
+        birthYear: 1994,
+        birthMonth: 12,
+        birthDay: 17,
+    }
+    
+    fmt.Fprint(w, newUser)
+    //Grab cookie
+    
+    
     //Link it to that session
 }
 

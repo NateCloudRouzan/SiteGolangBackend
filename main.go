@@ -172,7 +172,7 @@ func init() {
     
 //    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
 
-//    admin.username = "nastynate"
+    admin.username = "nastynate"
  //   admin.password = []byte("password")
 //    admin.fname = "nate"
 //    admin.lname = "cloud"

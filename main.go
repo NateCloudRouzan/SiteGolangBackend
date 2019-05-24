@@ -27,8 +27,8 @@ type LoginInfo struct {
 }
 
 var admin User
-var session_map map[string]string
-var user_map map[string]User
+var session_map = make(map[string]string)
+var user_map = make(map[string]User)
 
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != http.MethodPost {
@@ -179,7 +179,7 @@ func init() {
     admin.birthYear = 1994
     admin.birthMonth = 12
     admin.birthDay = 17
-//    user_map["nastynate"]=admin
+    user_map["nastynate"]=admin
         
     http.HandleFunc("/", homeHandler)
     

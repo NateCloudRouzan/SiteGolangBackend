@@ -28,11 +28,15 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head>
 <body><h1>Signup</h1>
 <form method="POST" action="/account_home">
-    <h3>Username</h3><br><input type="text" name="username"> <br>
-    <h3>First Name</h3><br><input type="text" name="fname"> <br>
-    <h3>Last Name</h3><input type="text" name="lname"> <br>
-    <h3>Email</h3><input type="text" name="email"> <br>
-    <input type="submit">
+    Username<br><input type="text" name="username" value="NastyNate"> <br>
+    First Name<br><input type="text" name="fname" value="Nate"> <br>
+    Last Name<br><input type="text" name="lname" value="Cloud">
+    Email<br><input type="text" name="email" value="example@example.com">
+    <label for="pass">Password (8 characters minimum):</label>
+    <input type="password" id="pass" name="password" minlength="8" required>
+    <label for="pass">Re-type password:</label>
+    <input type="password" id="pass" name="password" minlength="8" required>
+    <input type="submit" value="Sign Up!">
 </form></body>
 </html>`)
     

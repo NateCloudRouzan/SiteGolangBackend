@@ -99,7 +99,7 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/set", http.StatusSeeOther)
 		return
 	}
-    delete(session_map, c.value) //Delete map entry 
+    delete(session_map, c.Value) //Delete map entry 
     c.MaxAge = -1 // delete cookie
 	
     http.SetCookie(w, c)

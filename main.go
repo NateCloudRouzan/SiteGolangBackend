@@ -85,9 +85,18 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
-    //take in login info
+    
+    if r.Method != http.MethodPost { //take in login info
+        fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body><h1>Login</h1><form method="POST" action="/login">
+    Username<br><input type="text" name="username" value="NateDog"> <br>
+    <p>Password:</p><input name="password" required="required" type="password" id="password" /><br />
+    <input type="submit" value="Sign Up!"></form></body></html>`)
+        return
+    }
+    
     //make sure data matches map
     //Link session to username
+    //Go to account home page
     
 }
 
@@ -106,10 +115,13 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LoggedInHome(w http.ResponseWriter, r *http.Request) {
+    //Grab cookie
+    //From there get username
+    
+    //From username grab user
+    
     //Show Name username and email
     //Make a birthday countdown
-    //
-
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -157,6 +169,7 @@ func seeUUID(w http.ResponseWriter, req *http.Request){
 
 func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
+    
 //    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
 
 //    admin.username = "nastynate"

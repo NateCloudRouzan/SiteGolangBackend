@@ -153,8 +153,8 @@ func init() {
     admin.lname = "cloud"
     admin.email = "example@example.com" 
     admin.birthYear = 1994
-    &admin.birthMonth = 12
-    &admin.birthDay = 17
+    admin.birthMonth = 12
+    admin.birthDay = 17
     
     
     

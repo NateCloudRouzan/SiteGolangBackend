@@ -27,13 +27,15 @@ type LoginInfo struct {
 }
 
 var admin User
-//var adminptr = &User
+
+var session_map map[string]string
+var user_map map[string]User
 
 func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method != http.MethodPost {
         fmt.Fprint(w, `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body><h1>Signup</h1>
     <form method="POST" action="/signup">
-    Username<br><input type="text" name="username" value="NastyNate"> <br>
+    Username<br><input type="text" name="username" value="NateDog"> <br>
     First Name<br><input type="text" name="fname" value="Nate"> <br>
     Last Name<br><input type="text" name="lname" value="Cloud"><br>
     Email<br><input type="text" name="email" value="example@example.com"><br>
@@ -57,8 +59,11 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     }
     
     bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
-
     
+    if _, ok := dbUsers[un]; ok {
+			http.Error(w, "Username already taken", http.StatusForbidden)
+			return
+    }
     
     newUser := User{ //Create account
         username: r.FormValue("username"),
@@ -76,9 +81,8 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, admin)
 
     //Grab cookie
-    
-    
     //Link it to that session
+    //redirect to 
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -89,8 +93,18 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
-    //Delete session cookie 
-    //Remove
+    c, err := req.Cookie("session")
+	
+    if err != nil {
+		http.Redirect(w, req, "/set", http.StatusSeeOther)
+		return
+	}
+    delete(session_map, c.value) //Delete map entry 
+    c.MaxAge = -1 // delete cookie
+	
+    http.SetCookie(w, c)
+	http.Redirect(w, req, "/", http.StatusSeeOther)
+    
 }
 
 func LoggedInHome(w http.ResponseWriter, r *http.Request) {
@@ -155,9 +169,8 @@ func init() {
     admin.birthYear = 1994
     admin.birthMonth = 12
     admin.birthDay = 17
-    
-    
-    
+    user_map ["nastynate"] = admin
+        
     http.HandleFunc("/", homeHandler)
     
     http.HandleFunc("/cloudIcon.ico", iconHandler)

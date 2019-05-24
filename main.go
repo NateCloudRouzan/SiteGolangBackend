@@ -40,7 +40,8 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
     
-    fmt.Fprint(w, "In post")
+    fmt.Fprint(w, r.FormValue("fname"))
+    fmt.Fprint(w, r.FormValue("email"))
 
 
     

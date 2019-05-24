@@ -4,10 +4,12 @@ import (
 	"net/http"
     "fmt"
     "github.com/satori/go.uuid"
+    "golang.org/x/crypto/bcrypt"
 )
 
 type User struct{
     username string
+    password []byte
     fname string
     lname string
     email string
@@ -32,20 +34,36 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     First Name<br><input type="text" name="fname" value="Nate"> <br>
     Last Name<br><input type="text" name="lname" value="Cloud"><br>
     Email<br><input type="text" name="email" value="example@example.com"><br>
-    <label for="pass">Password (8 characters minimum):</label>
-    <input type="password" id="pass" name="password" minlength="8" required><br>
-    <label for="pass">Re-type password:</label>
-    <input type="password" id="pass" name="password" minlength="8" required><br>
+    <p>Password:</p>
+    <input name="password" required="required" type="password" id="password" />
+    <p>Confirm Password:</p>
+    <input name="password_confirm" required="required" type="password" id="password_confirm" oninput="check(this)" />
+    <script language='javascript' type='text/javascript'>
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
+    </script>
+    <br /><br />
     <input type="submit" value="Sign Up!"></form></body></html>`)
         return
     }
     
     //Need to reject passwords if they dont match
     //need to encrypt passwords
+    bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)
+
+    
     
     newUser := User{ //Create account
         username: r.FormValue("username"),
+        
         fname: r.FormValue("fname"),
+        password: bs,
         lname: r.FormValue("lname"),
         email: r.FormValue("email"),
         birthYear: 1994,

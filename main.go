@@ -60,7 +60,7 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     
     bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
     
-    if _, ok := dbUsers[un]; ok {
+    if _, ok := user_map[r.FormValue("username")]; ok {
 			http.Error(w, "Username already taken", http.StatusForbidden)
 			return
     }
@@ -96,15 +96,14 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
     c, err := req.Cookie("session")
 	
     if err != nil {
-		http.Redirect(w, req, "/set", http.StatusSeeOther)
+		http.Redirect(w, r, "/set", http.StatusSeeOther)
 		return
 	}
     delete(session_map, c.value) //Delete map entry 
     c.MaxAge = -1 // delete cookie
 	
     http.SetCookie(w, c)
-	http.Redirect(w, req, "/", http.StatusSeeOther)
-    
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
 
 func LoggedInHome(w http.ResponseWriter, r *http.Request) {

@@ -171,7 +171,6 @@ func init() {
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     
     bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
-    
     admin.username = "nastynate"
     admin.password = bs
     admin.fname = "nate"
@@ -180,7 +179,7 @@ func init() {
     admin.birthYear = 1994
     admin.birthMonth = 12
     admin.birthDay = 17
-//    user_map["nastynate"] = admin
+//    user_map["nastynate"]=admin
         
     http.HandleFunc("/", homeHandler)
     

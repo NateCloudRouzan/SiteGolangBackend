@@ -59,10 +59,10 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     
     bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
     
-//    if _, ok := user_map[r.FormValue("username")]; ok {
-//			http.Error(w, "Username already taken", http.StatusForbidden)
-//			return
-//    }
+    if _, ok := user_map[r.FormValue("username")]; ok {
+			http.Error(w, "Username already taken", http.StatusForbidden)
+			return
+    }
     
     newUser := User{ //Create account
         username: r.FormValue("username"),

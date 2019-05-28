@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+    "strconv"
 //    "bytes"
     "fmt"
     "github.com/satori/go.uuid"
@@ -78,6 +79,10 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
 			return
     }
     
+    year, _ := strconv.Atoi(r.FormValue("Year"))
+    month, _ := strconv.Atoi(r.FormValue("Month"))
+    day, _ := strconv.Atoi(r.FormValue("Day"))
+    
     newUser := User{ //Create account
         username: r.FormValue("username"),
         
@@ -85,17 +90,15 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
         password: hash,
         lname: r.FormValue("lname"),
         email: r.FormValue("email"),
-        birthYear: r.FormValue("Year"),
-        birthMonth: r.FormValue("Month"),
-        birthDay: r.FormValue("Day"),
+        birthYear: year,
+        birthMonth: month,
+        birthDay: day,
     }
     
-    fmt.Fprint(w, newUser)
-    fmt.Fprint(w, admin)
-
-    //Grab cookie
-    //Link it to that session
-    //redirect to 
+    user_map[r.FormValue("username")]=newUser//Add user to user map
+    cookie, _ := r.Cookie("session")//Grab session cookie
+    session_map[cookie.Value]=r.FormValue("username") //Link session to username
+    http.Redirect(w, r, "/account_home", http.StatusSeeOther) //Go to account home page
 }
 
 func HashPassword(password string) (string, error) {
@@ -131,7 +134,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
-    cookie, _ := r.Cookie("session")
+    cookie, _ := r.Cookie("session")//Grab session cookie
     session_map[cookie.Value]=r.FormValue("username") //Link session to username
     http.Redirect(w, r, "/account_home", http.StatusSeeOther) //Go to account home page
 }

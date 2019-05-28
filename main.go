@@ -123,24 +123,13 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     }
     
     realPword := user_map[r.FormValue("username")].password //Users real hashed password
-    bs, _ := HashPassword(r.FormValue("password"))//what the user types in
-    a :="password"
-    hash, _ := HashPassword(a) // ignore error for the sake of simplicity
-
+ //   bs, _ := HashPassword(r.FormValue("password"))//what the user types in
     
  //   ba, _ := bcrypt.GenerateFromPassword([]byte(a), bcrypt.MinCost)//need to encrypt passwords
 
 
-    fmt.Fprint(w, "(In method)Password:" + a + "<br>")
     fmt.Fprint(w, "(typed)____Password:" + r.FormValue("password") + "<br>") 
-
-	fmt.Fprint(w, "-----------Hash:" + hash + "<br>")
-    fmt.Fprint(w, "-----------Hash:" + bs + "<br>")
     fmt.Fprint(w, "real pword-Hash:" + realPword + "<br>")
-    
-	match := CheckPasswordHash(a, hash)
-    fmt.Fprint(w, "Match Same:   ")
-    fmt.Fprint(w, match)
     
     match1 := CheckPasswordHash(r.FormValue("password"), realPword)
     fmt.Fprint(w, "<br>Match (typed w real password):   ")

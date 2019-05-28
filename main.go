@@ -142,8 +142,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, "Match Same:   ")
     fmt.Fprint(w, match)
     
-    match1 := CheckPasswordHash(r.FormValue("password"), hash)
-    fmt.Fprint(w, "<br>Match (typed w in our in method):   ")
+    match1 := CheckPasswordHash(r.FormValue("password"), realPword)
+    fmt.Fprint(w, "<br>Match (typed w real password):   ")
     fmt.Fprint(w, match1)   
     
  //   if match{

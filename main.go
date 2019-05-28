@@ -138,13 +138,13 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, match)
     
     
-    if match{
-        fmt.Fprint(w, "Wrong password dummy<br>")
+ //   if match{
+//        fmt.Fprint(w, "Wrong password dummy<br>")
         fmt.Fprint(w, r.FormValue("password") + ": ")
         fmt.Fprint(w, bs)
         fmt.Fprint(w, " <br>")
         fmt.Fprint(w, a + ": ")
-        fmt.Fprint(w, ba)
+        fmt.Fprint(w, hash)
         fmt.Fprint(w, " <br>")
         fmt.Fprint(w, realPword)
         fmt.Fprint(w, " <br>")

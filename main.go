@@ -63,11 +63,13 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     }
     </script>
     <br /><br />
+    <input type="number" name="Year" min="1900" max="2019">
+    <input type="number" name="Month" min="1" max="12">
+    <input type="number" name="Day" min="1" max="31">    
     <input type="submit" value="Sign Up!"></form></body></html>`)
         return
     }
     
-   // bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
     hash, _ := HashPassword(r.FormValue("password")) // ignore error for the sake of simplicity
 
     if _, ok := user_map[r.FormValue("username")]; ok {
@@ -82,9 +84,9 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
         password: hash,
         lname: r.FormValue("lname"),
         email: r.FormValue("email"),
-        birthYear: 1994,
-        birthMonth: 12,
-        birthDay: 17,
+        birthYear: r.FormValue("Year"),
+        birthMonth: r.FormValue("Month"),
+        birthDay: r.FormValue("Day"),
     }
     
     fmt.Fprint(w, newUser)
@@ -114,21 +116,14 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     <input type="submit" value="Sign Up!"></form></body></html>`)
         return
     }
-    
-    
-    
+        
     if _, ok := user_map[r.FormValue("username")]; !ok { //reject if there is no username
 			http.Error(w, "Nobody with this username in the database", http.StatusForbidden)
 			return
     }
     
     realPword := user_map[r.FormValue("username")].password //Users real hashed password
-
-//    fmt.Fprint(w, "(typed)____Password:" + r.FormValue("password") + "<br>") 
-//    fmt.Fprint(w, "real pword-Hash:" + realPword + "<br>")
-    
-//    match := CheckPasswordHash(r.FormValue("password"), realPword)
-//    fmt.Fprint(w, match)   
+  
     
     if !CheckPasswordHash(r.FormValue("password"), realPword){        
         http.Error(w, "Wrong password dummy", http.StatusForbidden)

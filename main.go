@@ -123,28 +123,21 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     }
     
     realPword := user_map[r.FormValue("username")].password //Users real hashed password
- //   bs, _ := HashPassword(r.FormValue("password"))//what the user types in
-    
- //   ba, _ := bcrypt.GenerateFromPassword([]byte(a), bcrypt.MinCost)//need to encrypt passwords
 
-
-    fmt.Fprint(w, "(typed)____Password:" + r.FormValue("password") + "<br>") 
-    fmt.Fprint(w, "real pword-Hash:" + realPword + "<br>")
+//    fmt.Fprint(w, "(typed)____Password:" + r.FormValue("password") + "<br>") 
+//    fmt.Fprint(w, "real pword-Hash:" + realPword + "<br>")
     
-    match1 := CheckPasswordHash(r.FormValue("password"), realPword)
-    fmt.Fprint(w, "<br>Match (typed w real password):   ")
-    fmt.Fprint(w, match1)   
+//    match := CheckPasswordHash(r.FormValue("password"), realPword)
+//    fmt.Fprint(w, match)   
     
- //   if match{
-//        fmt.Fprint(w, "Wrong password dummy<br>")
-        
-//        http.Error(w, "Wrong password dummy", http.StatusForbidden)
-//        return
-//    }
+    if !CheckPasswordHash(r.FormValue("password"), realPword){        
+        http.Error(w, "Wrong password dummy", http.StatusForbidden)
+        return
+    }
 
     cookie, _ := r.Cookie("session")
     session_map[cookie.Value]=r.FormValue("username") //Link session to username
-//    http.Redirect(w, r, "/account_home", http.StatusSeeOther) //Go to account home page
+    http.Redirect(w, r, "/account_home", http.StatusSeeOther) //Go to account home page
 }
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {

@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-    "bytes"
+//    "bytes"
     "fmt"
     "github.com/satori/go.uuid"
     "golang.org/x/crypto/bcrypt"
@@ -68,7 +68,7 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     }
     
    // bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
-    hash, _ := HashPassword([]byte(r.FormValue("password"))) // ignore error for the sake of simplicity
+    hash, _ := HashPassword(r.FormValue("password")) // ignore error for the sake of simplicity
 
     if _, ok := user_map[r.FormValue("username")]; ok {
 			http.Error(w, "Username already taken", http.StatusForbidden)

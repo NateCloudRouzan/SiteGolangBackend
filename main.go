@@ -131,7 +131,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
  //   ba, _ := bcrypt.GenerateFromPassword([]byte(a), bcrypt.MinCost)//need to encrypt passwords
 
 
-    fmt.Fprint(w, "(In method)Password:" + a "<br>")
+    fmt.Fprint(w, "(In method)Password:" + a + "<br>")
 	fmt.Fprint(w, "               Hash:" + hash + "<br>")
     fmt.Fprint(w, "(typed)    Password:" + r.FormValue("password") + "<br>") 
     fmt.Fprint(w, "               Hash:" + bs + "<br>")

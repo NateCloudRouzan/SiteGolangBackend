@@ -132,15 +132,19 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 
     fmt.Fprint(w, "(In method)Password:" + a + "<br>")
-	fmt.Fprint(w, "               Hash:" + hash + "<br>")
-    fmt.Fprint(w, "(typed)    Password:" + r.FormValue("password") + "<br>") 
-    fmt.Fprint(w, "               Hash:" + bs + "<br>")
-    fmt.Fprint(w, "real pword     Hash:" + realPword)
+    fmt.Fprint(w, "(typed)____Password:" + r.FormValue("password") + "<br>") 
+
+	fmt.Fprint(w, "-----------Hash:" + hash + "<br>")
+    fmt.Fprint(w, "-----------Hash:" + bs + "<br>")
+    fmt.Fprint(w, "real pword-Hash:" + realPword + "<br>")
     
 	match := CheckPasswordHash(a, hash)
-    fmt.Fprint(w, "Match:   ")
+    fmt.Fprint(w, "Match Same:   ")
     fmt.Fprint(w, match)
     
+    match1 := CheckPasswordHash(r.FormValue("password"), hash)
+    fmt.Fprint(w, "<br>Match (typed w in our in method):   ")
+    fmt.Fprint(w, match1)   
     
  //   if match{
 //        fmt.Fprint(w, "Wrong password dummy<br>")

@@ -67,8 +67,9 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
     
-    bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
-    
+   // bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//need to encrypt passwords
+    hash, _ := HashPassword([]byte(r.FormValue("password"))) // ignore error for the sake of simplicity
+
     if _, ok := user_map[r.FormValue("username")]; ok {
 			http.Error(w, "Username already taken", http.StatusForbidden)
 			return
@@ -78,7 +79,7 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
         username: r.FormValue("username"),
         
         fname: r.FormValue("fname"),
-        password: bs,
+        password: hash,
         lname: r.FormValue("lname"),
         email: r.FormValue("email"),
         birthYear: 1994,
@@ -137,7 +138,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, match)
     
     
-    if ! (bytes.Equal(realPword, bs)){
+    if match{
         fmt.Fprint(w, "Wrong password dummy<br>")
         fmt.Fprint(w, r.FormValue("password") + ": ")
         fmt.Fprint(w, bs)

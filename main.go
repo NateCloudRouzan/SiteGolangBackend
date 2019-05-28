@@ -150,8 +150,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
         fmt.Fprint(w, " <br>")
         
 //        http.Error(w, "Wrong password dummy", http.StatusForbidden)
-        return
-    }
+//        return
+//    }
 
     cookie, _ := r.Cookie("session")
     session_map[cookie.Value]=r.FormValue("username") //Link session to username

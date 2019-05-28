@@ -63,6 +63,7 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     }
     </script>
     <br /><br />
+    Birthday: Year Month Day<br>
     <input type="number" name="Year" min="1900" max="2019">
     <input type="number" name="Month" min="1" max="12">
     <input type="number" name="Day" min="1" max="31">    

@@ -138,7 +138,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprint(w, "real pword     Hash:" + realPword)
     
 	match := CheckPasswordHash(a, hash)
-    fmt.Fprint(w, "Match:   " + match)
+    fmt.Fprint(w, "Match:   ")
+    fmt.Fprint(w, match)
     
     
  //   if match{

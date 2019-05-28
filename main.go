@@ -10,7 +10,7 @@ import (
 
 type User struct{
     username string
-    password []byte
+    password string
     fname string
     lname string
     email string
@@ -94,6 +94,16 @@ func SignUpHandler(w http.ResponseWriter, r *http.Request) {
     //redirect to 
 }
 
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
+}
+
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
+}
+
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
     
     if r.Method != http.MethodPost { //take in login info
@@ -111,10 +121,21 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 			return
     }
     
-    realPword := user_map[r.FormValue("username")].password //Users real password
-    bs, _ := bcrypt.GenerateFromPassword([]byte(r.FormValue("password")), bcrypt.MinCost)//what the user types in
+    realPword := user_map[r.FormValue("username")].password //Users real hashed password
+    bs, _ := HashPassword(r.FormValue("password"))//what the user types in
     a :="password"
-    ba, _ := bcrypt.GenerateFromPassword([]byte(a), bcrypt.MinCost)//need to encrypt passwords
+    hash, _ := HashPassword(a) // ignore error for the sake of simplicity
+
+    
+ //   ba, _ := bcrypt.GenerateFromPassword([]byte(a), bcrypt.MinCost)//need to encrypt passwords
+
+
+	fmt.Fprint(w, "Password:" + a)
+	fmt.Fprint(w, "Hash:    " + hash)
+	match := CheckPasswordHash(a, hash)
+    fmt.Fprint(w, "Match:   ")
+    fmt.Fprint(w, match)
+    
     
     if ! (bytes.Equal(realPword, bs)){
         fmt.Fprint(w, "Wrong password dummy<br>")
@@ -132,11 +153,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     cookie, _ := r.Cookie("session")
-    
     session_map[cookie.Value]=r.FormValue("username") //Link session to username
-    
-    http.Redirect(w, r, "/account_home", http.StatusSeeOther) //Go to account home page
-    
+//    http.Redirect(w, r, "/account_home", http.StatusSeeOther) //Go to account home page
 }
 
 func LogoutHandler(w http.ResponseWriter, r *http.Request) {
@@ -210,21 +228,13 @@ func seeUUID(w http.ResponseWriter, req *http.Request){
 
 func init() {
     
-    
-    
-    
-    
-    
-    
     //https://www.w3schools.com/html/tryit.asp?filename=tryhtml_input_date_max_min
-    
-    
-    
     
     
 	//http.Handle("/", http.FileServer(http.Dir(".")))
     
-    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
+//    bs, _ := bcrypt.GenerateFromPassword([]byte("password"), bcrypt.MinCost)//need to encrypt passwords
+    bs,_ := HashPassword("password")
     admin.username = "nastynate"
     admin.password = bs
     admin.fname = "nate"
